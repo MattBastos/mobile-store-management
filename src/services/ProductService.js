@@ -73,8 +73,22 @@ class ProductService {
   }
 
   async updateProduct(id, product) {
-    const updatedProduct = this.model.update({ ...product }, { where: { id } });
-    return updatedProduct;
+    const formattedProduct = ProductFormatter.formatSimpleProductObject(product);
+    const productUpdateValidation = ProductValidator.validateProductData(formattedProduct);
+
+    if (productUpdateValidation) {
+      return {
+        statusCode: productUpdateValidation.statusCode,
+        message: productUpdateValidation.message,
+      }
+    }
+
+    const updatedProduct = await this.model.update({ ...formattedProduct }, { where: { id } });
+
+    return {
+      statusCode: 200,
+      message: updatedProduct,
+    }
   }
 
   async deleteProduct(id) {
