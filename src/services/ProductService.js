@@ -7,6 +7,11 @@ class ProductService {
     this.model = model;
   }
 
+  async getAllProducts() {
+    const allProducts = await this.model.findAll();
+    return allProducts.map((product) => product.dataValues);
+  }
+
   async createSimpleProduct(product) {
     const formattedProduct = ProductFormatter.formatSimpleProductObject(product);
     const productCreationValidation = ProductValidator.validateProductData(formattedProduct);
