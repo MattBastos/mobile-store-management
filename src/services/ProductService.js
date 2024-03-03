@@ -1,6 +1,5 @@
 const ProductFormatter = require('../utils/formatters/ProductFormatter.js');
 const ProductValidator = require('../utils/validations/ProductValidator.js');
-const { Product } = require('../database/models/index.js');
 
 class ProductService {
   constructor(model) {
