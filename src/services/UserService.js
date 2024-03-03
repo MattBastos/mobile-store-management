@@ -7,14 +7,9 @@ class UserService {
     this.model = model;
   }
 
-  async getUserByEmail(email) {
-    const user = await this.model.findOne({ where: { email } });
-    return user;
-  }
-
   async createUser(user) {
     try {
-      const existingUser = await this.model.getUserByEmail(user.email);
+      const existingUser = await this.model.findOne({ where: { email: user.email } });
       const userCreationValidation = UserValidator.validateUserCreation(existingUser, user);
 
       if (userCreationValidation) {
