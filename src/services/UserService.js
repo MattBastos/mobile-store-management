@@ -1,10 +1,15 @@
 import bcrypt from 'bcrypt';
-import { UserValidator } from "../utils/validations/UserValidator";
-import { TokenGenerator } from "../utils/auth/TokenGenerator";
+import { UserValidator } from '../utils/validations/UserValidator.js';
+import { TokenGenerator } from "../utils/auth/TokenGenerator.js";
 
 export class UserService {
   constructor(model) {
     this.model = model;
+  }
+
+  async getUserByEmail(email) {
+    const user = await this.model.findOne({ where: { email } });
+    return user;
   }
 
   async createUser(user) {

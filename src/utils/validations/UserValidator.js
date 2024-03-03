@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
-import { loginSchema, createUserSchema } from './joiSchema';
+import { loginSchema, createUserSchema } from './joiSchema.js';
 
 export class UserValidator {
   static async validateLogin(user, email, password) {
