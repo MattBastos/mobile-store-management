@@ -1,4 +1,4 @@
-import md5 from "md5";
+import bcrypt from 'bcrypt';
 import { UserValidator } from "../utils/validations/UserValidator";
 import { TokenGenerator } from "../utils/auth/TokenGenerator";
 
@@ -8,20 +8,30 @@ export class UserService {
   }
 
   async createUser(user) {
-    const existingUser = await this.model.getUserByEmail(user.email);
-    const { statusCode, message } = UserValidator.validateUserCreation(existingUser, user);
+    try {
+      const existingUser = await this.model.getUserByEmail(user.email);
+      const userCreationValidation = UserValidator.validateUserCreation(existingUser, user);
 
-    if (statusCode) return { statusCode, message };
+      if (userCreationValidation) {
+        return {
+          statusCode: userCreationValidation.statusCode,
+          message: userCreationValidation.message
+        };
+      }
 
-    const hashedPassword = md5(user.password);
-    const {password: _, ...newUserData } = user;
-    const newUser = await this.model.create({ ...newUserData, password: hashedPassword });
-    const token = TokenGenerator.generateToken(newUser);
+      const hashedPassword = await bcrypt.hash(user.password, 10);
 
-    return {
-      userName: newUserData.username,
-      email: newUserData.email,
-      token
-    };
+      const {password: _, ...newUserData } = user;
+      const newUser = await this.model.create({ ...newUserData, password: hashedPassword });
+      const token = TokenGenerator.generateToken(newUser);
+
+      return {
+        userName: newUserData.username,
+        email: newUserData.email,
+        token
+      };
+    } catch (error) {
+      return { statusCode: 500, message: 'Internal Server Error' };
+    }
   }
 }

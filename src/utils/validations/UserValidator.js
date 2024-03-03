@@ -1,20 +1,24 @@
-import md5 from "md5";
+import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import { loginSchema, createUserSchema } from './joiSchema';
 
 export class UserValidator {
-  static validateLogin(user, email, password) {
+  static async validateLogin(user, email, password) {
     const { error } = loginSchema.validate({ email, password });
 
     if (error) return { statusCode: 400, message: error.details[0].message }
 
     if (!user) return { statusCode: 404, message: 'This user does not exists!' }
 
-    const hashedPassword = md5(password);
+    try {
+      const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if (user.password !== hashedPassword) return { statusCode: 401, message: 'Incorrect password!' }
+      if (!passwordMatch) return { statusCode: 401, message: 'Incorrect password' };
 
-    return null;
+      return null;
+    } catch (error) {
+      return { statusCode: 500, message: 'Internal Server Error' };
+    }
   }
 
   static validateToken(req, res, next) {
