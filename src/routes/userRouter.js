@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const UserValidator = require('../utils/validations/UserValidator.js');
 const userFactory = require('../factories/UserFactory.js');
 
 const userRouter = Router();
