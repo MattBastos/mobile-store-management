@@ -71,6 +71,10 @@ class ProductService {
       message: newProducts,
     };
   }
+
+  async deleteProduct(id) {
+    await this.model.destroy({ where: { id } });
+  }
 }
 
 module.exports = ProductService;
