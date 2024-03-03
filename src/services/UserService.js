@@ -22,10 +22,13 @@ class UserService {
       const token = TokenGenerator.generateToken(user);
 
       return {
-        id: user.id,
-        name: user.name,
-        email,
-        token,
+        statusCode: 200,
+        message: {
+          id: user.id,
+          name: user.name,
+          email,
+          token,
+        }
       };
     } catch (error) {
       return { statusCode: 500, message: 'Internal Server Error' };
@@ -51,9 +54,12 @@ class UserService {
       const token = TokenGenerator.generateToken(newUser);
 
       return {
-        userName: newUserData.username,
-        email: newUserData.email,
-        token
+        statusCode: 201,
+        message: {
+          userName: newUserData.username,
+          email: newUserData.email,
+          token
+        }
       };
     } catch (error) {
       return { statusCode: 500, message: 'Internal Server Error' };
