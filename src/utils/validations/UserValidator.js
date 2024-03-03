@@ -10,12 +10,12 @@ class UserValidator {
 
     if (error) return { statusCode: 400, message: error.details[0].message }
 
-    if (!user) return { statusCode: 404, message: 'This user does not exists!' }
+    if (!user) return { statusCode: 404, message: 'This user does not exist!' }
 
     try {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
-      if (!passwordMatch) return { statusCode: 401, message: 'Incorrect password' };
+      if (!passwordMatch) return { statusCode: 401, message: 'Incorrect password!' };
 
       return null;
     } catch (error) {
