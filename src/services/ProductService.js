@@ -25,6 +25,25 @@ class ProductService {
       message: newProduct,
     };
   }
+
+  async createDetailedProduct(product) {
+    const formattedProduct = ProductFormatter.formatDetailedProductObject(product);
+    const productCreationValidation = ProductValidator.validateProductData(formattedProduct);
+
+    if (productCreationValidation) {
+      return {
+        statusCode: productCreationValidation.statusCode,
+        message: productCreationValidation.message,
+      }
+    }
+
+    const newProduct = await this.model.create(formattedProduct);
+
+    return {
+      statusCode: 201,
+      message: newProduct,
+    };
+  }
 }
 
 module.exports = ProductService;
