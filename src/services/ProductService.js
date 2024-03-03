@@ -44,6 +44,28 @@ class ProductService {
       message: newProduct,
     };
   }
+
+  async createManyProduct(products) {
+    const formattedProducts = ProductFormatter.formatProductObjectsFromList(products);
+    
+    formattedProducts.forEach((formattedProduct) => {
+      const productCreationValidation = ProductValidator.validateProductData(formattedProduct);
+
+      if (productCreationValidation) {
+        return {
+          statusCode: productCreationValidation.statusCode,
+          message: productCreationValidation.message,
+        }
+      }
+    });
+    
+    const newProducts = await this.model.bulkCreate(formattedProducts);
+
+    return {
+      statusCode: 201,
+      message: newProducts,
+    };
+  }
 }
 
 module.exports = ProductService;
