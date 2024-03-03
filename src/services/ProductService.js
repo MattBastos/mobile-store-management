@@ -72,6 +72,11 @@ class ProductService {
     };
   }
 
+  async updateProduct(id, product) {
+    const updatedProduct = this.model.update({ ...product }, { where: { id } });
+    return updatedProduct;
+  }
+
   async deleteProduct(id) {
     await this.model.destroy({ where: { id } });
   }
