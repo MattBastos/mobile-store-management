@@ -50,7 +50,7 @@ class ProductService {
     };
   }
 
-  async createManyProduct(products) {
+  async createManyProducts(products) {
     const formattedProducts = ProductFormatter.formatProductObjectsFromList(products);
     
     formattedProducts.forEach((formattedProduct) => {
