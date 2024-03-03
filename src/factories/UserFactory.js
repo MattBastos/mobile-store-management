@@ -1,4 +1,4 @@
-const { User } = require('../database/models');
+const { User } = require('../database/models/index.js');
 const UserService = require('../services/UserService.js');
 const UserController = require('../controllers/UserController.js');
 
