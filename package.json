@@ -23,7 +23,8 @@
     "react-dom": "^18",
     "sequelize": "^6.37.1",
     "joi": "^17.8.3",
-    "md5": "2.3.0"
+    "md5": "2.3.0",
+    "jsonwebtoken": "8.5.1"
   },
   "devDependencies": {
     "@types/node": "^20",
