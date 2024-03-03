@@ -1,19 +1,19 @@
-import { jwt } from "jsonwebtoken";
-import { readFileSync } from "fs";
-
-const secret = readFileSync('./jwt.evaluation.key');
+import jwt from "jsonwebtoken";
 
 export class TokenGenerator {
   static generateToken(user) {
-    const payload = {
-      username: user.username,
-      email: user.email,
-    };
+    try {
+      const secret = process.env.JWT_SECRET;
 
-    return jwt.sign(
-      payload,
-      secret,
-      { algorithm: 'HS256', expiresIn: '7d' },
-    );
+      const payload = {
+        username: user.username,
+        email: user.email,
+      };
+
+      return jwt.sign(payload, secret, { algorithm: 'HS256', expiresIn: '7d' });
+    } catch (error) {
+      console.error('Error reading secret key: ', error.message);
+      throw new Error('Error generating token!');
+    }
   }
 }
