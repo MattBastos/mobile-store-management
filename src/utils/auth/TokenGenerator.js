@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export class TokenGenerator {
+class TokenGenerator {
   static generateToken(user) {
     try {
       const secret = process.env.JWT_SECRET;
@@ -17,3 +17,5 @@ export class TokenGenerator {
     }
   }
 }
+
+module.exports = TokenGenerator;

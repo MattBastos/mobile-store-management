@@ -1,8 +1,8 @@
-import bcrypt from 'bcrypt';
-import { UserValidator } from '../utils/validations/UserValidator.js';
-import { TokenGenerator } from "../utils/auth/TokenGenerator.js";
+const bcrypt = require('bcrypt');
+const UserValidator = require('../utils/validations/UserValidator.js');
+const TokenGenerator = require("../utils/auth/TokenGenerator.js");
 
-export class UserService {
+class UserService {
   constructor(model) {
     this.model = model;
   }
@@ -40,3 +40,5 @@ export class UserService {
     }
   }
 }
+
+module.exports = UserService;

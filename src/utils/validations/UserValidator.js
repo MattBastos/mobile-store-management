@@ -1,8 +1,8 @@
-import bcrypt from 'bcrypt';
-import jwt from "jsonwebtoken";
-import { loginSchema, createUserSchema } from './joiSchema.js';
+const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const { loginSchema, createUserSchema } = require('./joiSchema.js');
 
-export class UserValidator {
+class UserValidator {
   static async validateLogin(user, email, password) {
     const { error } = loginSchema.validate({ email, password });
 
@@ -62,3 +62,5 @@ export class UserValidator {
     return null;
   }
 }
+
+module.exports = UserValidator;
