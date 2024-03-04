@@ -1,6 +1,6 @@
 import { SignOut } from "@/components/Icons";
 
-export const LogoutButton = () => {
+export const SignOutButton = () => {
   return (
     <section>
       <button>
