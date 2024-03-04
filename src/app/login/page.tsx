@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
+import { LoginForm } from "@/components/Login";
 
 export default function Login() {
   const [isRegistering, setRegistering] = useState(false);
@@ -71,39 +72,7 @@ export default function Login() {
                 </button>
               </section>
             </form>
-          ) : (
-            <form>
-              <section className="mb-4">
-                <label htmlFor="email" className="block text-md font-medium text-gray-600">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-1 p-2 w-full border rounded-md border-gray-400 focus:border-primary focus:outline-none transition-colors duration-200 ease-in-out"
-                />
-              </section>
-
-              <section className="mb-4">
-                <label htmlFor="password" className="block text-md font-medium text-gray-600">
-                  Senha
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="mt-1 p-2 w-full border rounded-md border-gray-400 focus:border-primary focus:outline-none transition-colors duration-200 ease-in-out"
-                />
-              </section>
-
-              <section className="flex justify-center mb-4">
-                <button type="submit" className="bg-primary text-white p-2 rounded-md">
-                  Login
-                </button>
-              </section>
-            </form>
-          )}
+          ) : <LoginForm /> }
 
           <section className="flex justify-center items-center gap-2">
             <p>
