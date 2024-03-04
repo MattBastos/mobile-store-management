@@ -1,5 +1,10 @@
+import { Layout } from "@/components/Layout";
+import { InvalidUserMessage } from "@/components/InvalidUserMessage";
+
 export default function Home() {
   return (
-    <h1 className="text-white">Home</h1>
+    <Layout>
+      <InvalidUserMessage />
+    </Layout>
   );
 }
