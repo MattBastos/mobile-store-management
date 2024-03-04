@@ -24,9 +24,7 @@ class UserService {
       return {
         statusCode: 200,
         message: {
-          id: user.id,
-          name: user.name,
-          email,
+          name: user.username,
           token,
         }
       };
@@ -57,7 +55,6 @@ class UserService {
         statusCode: 201,
         message: {
           userName: newUserData.username,
-          email: newUserData.email,
           token
         }
       };

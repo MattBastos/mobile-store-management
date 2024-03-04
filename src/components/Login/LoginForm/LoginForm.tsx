@@ -1,0 +1,50 @@
+'use client';
+
+import { useLogin } from '@/hooks';
+import * as S from '../styles';
+
+export const LoginForm = () => {
+  const { handleSubmit, handleChange, error, isFormDataValid } = useLogin();
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <S.InputSection>
+        <S.Label htmlFor="email">
+          Email
+        </S.Label>
+
+        <S.Input
+          type="email"
+          id="email"
+          name="email"
+          onChange={handleChange}
+        />
+      </S.InputSection>
+
+      <S.InputSection>
+        <S.Label htmlFor="password">
+          Senha
+        </S.Label>
+
+        <S.Input
+          type="password"
+          id="password"
+          name="password"
+          onChange={handleChange}
+        />
+      </S.InputSection>
+
+      {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+
+      <S.ButtonSection>
+        <S.Button
+          type='submit'
+          disabled={!isFormDataValid()}
+          className={!isFormDataValid() ? 'bg-opacity-50' : ''}
+        >
+          Login
+        </S.Button>
+      </S.ButtonSection>
+    </form>
+  )
+};
