@@ -35,7 +35,13 @@ export const useRegister = () => {
 
     try {
       const response = await createUser(formData);
-      if (response.token) router.push('/');
+
+      if (response.token) {
+        localStorage.setItem('username', response.name);
+        localStorage.setItem('token', response.token);
+
+        router.push('/');
+      }
     }
     catch (error) {
       console.error("Erro ao criar novo usuário:", error);
