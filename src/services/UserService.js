@@ -55,7 +55,6 @@ class UserService {
         statusCode: 201,
         message: {
           userName: newUserData.username,
-          email: newUserData.email,
           token
         }
       };
