@@ -29,7 +29,13 @@ export const useLogin = () => {
 
     try {
       const response = await login(formData);
-      if (response.token) router.push('/');
+
+      if (response.token) {
+        localStorage.setItem('username', response.name);
+        localStorage.setItem('token', response.token);
+
+        router.push('/');
+      }
     }
     catch (error) {
       console.error("Erro ao fazer login:", error);
