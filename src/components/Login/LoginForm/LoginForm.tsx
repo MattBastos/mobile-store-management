@@ -38,7 +38,9 @@ export const LoginForm = () => {
 
       <S.ButtonSection>
         <S.Button
-          type='submit'
+          type="submit"
+          title="Efetuar login"
+          aria-label="Efetuar login"
           disabled={!isFormDataValid()}
           className={!isFormDataValid() ? 'bg-opacity-50' : ''}
         >

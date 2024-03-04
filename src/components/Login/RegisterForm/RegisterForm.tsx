@@ -53,6 +53,8 @@ export const RegisterForm = () => {
       <S.ButtonSection>
         <S.Button
           type="submit"
+          title="Registrar novo usuário"
+          aria-label="Registrar novo usuário"
           disabled={!isFormDataValid()}
           className={!isFormDataValid() ? 'bg-opacity-50' : ''}
         >
