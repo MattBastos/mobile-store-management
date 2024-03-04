@@ -33,8 +33,15 @@ export const ButtonSection = tw.section`
 
 export const Button = tw.button`
   bg-primary
+  text-center
   text-white
   p-2
   rounded-md
   w-full
+`;
+
+export const ErrorMessage = tw.p`
+  mb-4
+  text-red-500
+  text-center
 `;

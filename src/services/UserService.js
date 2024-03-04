@@ -24,9 +24,7 @@ class UserService {
       return {
         statusCode: 200,
         message: {
-          id: user.id,
-          name: user.name,
-          email,
+          name: user.username,
           token,
         }
       };
