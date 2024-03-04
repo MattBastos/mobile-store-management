@@ -36,4 +36,5 @@ export const Button = tw.button`
   text-white
   p-2
   rounded-md
+  w-full
 `;
