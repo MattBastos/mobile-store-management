@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { LoginForm } from "@/components/Login";
+import { RegisterForm } from "@/components/Login";
 
 export default function Login() {
   const [isRegistering, setRegistering] = useState(false);
@@ -16,63 +17,7 @@ export default function Login() {
             {isRegistering ? 'Registrar' : 'Login'}
           </h2>
 
-          {isRegistering ? (
-            <form>
-              <section className="mb-4">
-                <label htmlFor="name" className="block text-md font-medium text-gray-600">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="username"
-                  className="mt-1 p-2 w-full border rounded-md border-gray-400 focus:border-primary focus:outline-none transition-colors duration-200 ease-in-out"
-                />
-              </section>
-
-              <section className="mb-4">
-                <label htmlFor="email" className="block text-md font-medium text-gray-600">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-1 p-2 w-full border rounded-md border-gray-400 focus:border-primary focus:outline-none transition-colors duration-200 ease-in-out"
-                />
-              </section>
-
-              <section className="mb-4">
-                <label htmlFor="password" className="block text-md font-medium text-gray-600">
-                  Senha
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="mt-1 p-2 w-full border rounded-md border-gray-400 focus:border-primary focus:outline-none transition-colors duration-200 ease-in-out"
-                />
-              </section>
-
-              <section className="mb-6">
-                <label htmlFor="confirmPassword" className="block text-md font-medium text-gray-600">
-                  Confirmar Senha
-                </label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  name="password"
-                  className="mt-1 p-2 w-full border rounded-md border-gray-400 focus:border-primary focus:outline-none transition-colors duration-200 ease-in-out"
-                />
-              </section>
-
-              <section className="flex justify-center mb-4">
-                <button type="submit" className="bg-primary text-white p-2 rounded-md">
-                  Registrar
-                </button>
-              </section>
-            </form>
-          ) : <LoginForm /> }
+          {isRegistering ? <RegisterForm /> : <LoginForm />}
 
           <section className="flex justify-center items-center gap-2">
             <p>
