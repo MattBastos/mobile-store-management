@@ -10,4 +10,13 @@ export const login = async (formData: Omit<User, 'username'>) => {
   }
 };
 
+export const createUser = async (userData: User) => {
+  try {
+    const { data } = await axiosInstance.post('/register', userData);
+    return data;
+  } catch (error) {
+    console.error(`Erro ao criar novo usuário: ${error}`);
+  }
+}
+
 export const registerUser = async () => {};
