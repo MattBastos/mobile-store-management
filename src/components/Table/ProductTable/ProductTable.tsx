@@ -26,7 +26,8 @@ export const ProductTable = () => {
       const token = localStorage.getItem('token');
       const response = await getProducts(token);
 
-      if (response) {
+      if (response && response.data) {
+        setIsUserValid(true);
         setProductData(response.data);
       } else {
         setIsUserValid(false);
@@ -44,10 +45,11 @@ export const ProductTable = () => {
     <S.Container>
       <InvalidUserMessage isUserValid={isUserValid}/>
 
-      <S.TableContainer>
-        {productData.length === 0 && isUserValid ? (
-          <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
-        ) : (
+      
+      {productData.length === 0 && isUserValid ? (
+        <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
+      ) : (
+        <S.TableContainer className={ productData.length === 0 ? 'hidden' : '' }>
           <S.Table>
             <S.THead>
               <tr>
@@ -58,31 +60,24 @@ export const ProductTable = () => {
                 ))}
               </tr>
             </S.THead>
-
             <S.TBody>
               {productData.map((product) => (
                 <S.TBodyRow key={product.id}>
                   <S.TD>{product.name}</S.TD>
-
                   <S.TD>{product.brand}</S.TD>
-
                   <S.TD>{product.model}</S.TD>
-
                   <S.TD>{product.price}</S.TD>
-
                   <S.TD>{product.color}</S.TD>
-
                   <S.TDActions>
                     <button>Editar</button>
-
                     <button>Deletar</button>
                   </S.TDActions>
                 </S.TBodyRow>
               ))}
             </S.TBody>
           </S.Table>
-        )}
-      </S.TableContainer>
+        </S.TableContainer>
+      )}
     </S.Container>
   );
 };
