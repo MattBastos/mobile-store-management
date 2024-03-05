@@ -8,3 +8,5 @@ export type Product = {
   createdAt: string;
   updatedAt: string;
 }
+
+export type ProductNameAndModel = Pick<Product, 'id' | 'name' | 'model'>;

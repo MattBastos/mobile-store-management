@@ -29,7 +29,7 @@ export const SignOutButton = () => {
         </S.SignOutButton>
       }
 
-      {isModalOpen && (<S.OverlayBackdrop onClick={closeModal} />)}
+      {isModalOpen && <S.OverlayBackdrop onClick={closeModal} />}
 
       <S.ModalContainer className={isModalOpen ? '' : 'hidden'}>
         <S.ModalTitle>

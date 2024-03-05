@@ -1,5 +1,6 @@
 'use client';
 
 export {
-  SignOut
+  SignOut,
+  X
 } from '@phosphor-icons/react';
