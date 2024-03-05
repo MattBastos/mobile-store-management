@@ -5,7 +5,7 @@ const productFactory = require('../factories/ProductFactory.js');
 const productRouter = Router();
 
 productRouter.get(
-  '/',
+  '/products',
   UserValidator.validateToken,
   (req, res, next) => productFactory.getAllProducts(req, res, next)
 );
@@ -29,13 +29,13 @@ productRouter.post(
 );
 
 productRouter.put(
-  '/:id',
+  '/products/:id',
   UserValidator.validateToken,
   (req, res, next) => productFactory.updateProduct(req, res, next)
 );
 
 productRouter.delete(
-  '/:id',
+  '/products/:id',
   UserValidator.validateToken,
   (req, res, next) => productFactory.deleteProduct(req, res, next)
 );
