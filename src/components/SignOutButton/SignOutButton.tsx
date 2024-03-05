@@ -6,20 +6,28 @@ import { SignOut } from "@/components/Icons";
 import * as S from './styles';
 
 export const SignOutButton = () => {
-  const { openModal, isModalOpen, closeModal, handleConfirm } = useSignOut();
+  const {
+    openModal,
+    isModalOpen,
+    closeModal,
+    handleConfirm,
+    pathname
+  } = useSignOut();
 
   return (
     <>
-      <S.SignOutButton
-        type="button"
-        title="Sair"
-        aria-label="Sair"
-        onClick={openModal}
-      >
-        <SignOut size={20} />
+      {pathname !== '/login' &&
+        <S.SignOutButton
+          type="button"
+          title="Sair"
+          aria-label="Sair"
+          onClick={openModal}
+        >
+          <SignOut size={20} />
 
-        <S.SignOutTextButton>Sair</S.SignOutTextButton>
-      </S.SignOutButton>
+          <S.SignOutTextButton>Sair</S.SignOutTextButton>
+        </S.SignOutButton>
+      }
 
       {isModalOpen && (<S.OverlayBackdrop onClick={closeModal} />)}
 

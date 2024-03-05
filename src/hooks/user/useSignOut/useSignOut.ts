@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useRouter } from "next/navigation";
+import { usePathname } from 'next/navigation';
 
 export const useSignOut = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
@@ -20,6 +22,7 @@ export const useSignOut = () => {
     openModal,
     isModalOpen,
     closeModal,
-    handleConfirm
+    handleConfirm,
+    pathname
   };
 };
