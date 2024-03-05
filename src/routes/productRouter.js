@@ -5,6 +5,11 @@ const productFactory = require('../factories/ProductFactory.js');
 const productRouter = Router();
 
 productRouter.get(
+  '/products/:id',
+  (req, res, next) => productFactory.getProductById(req, res, next)
+);
+
+productRouter.get(
   '/products',
   UserValidator.validateToken,
   (req, res, next) => productFactory.getAllProducts(req, res, next)
