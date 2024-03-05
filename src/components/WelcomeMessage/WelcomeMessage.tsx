@@ -16,7 +16,7 @@ export const WelcomeMessage = () => {
 
   return (
     <S.Title>
-      {`Bem vindo, ${userName}.`}
+      {`Bem vindo, ${userName}`}
     </S.Title>
   );
 };
