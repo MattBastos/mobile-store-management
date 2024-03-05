@@ -8,8 +8,5 @@ export const Container = tw.header`
   items-center
   h-24
   w-full
-  bg-gradient-to-r
-  from-primary
-  to-secondary
   shadow-xl
 `;
