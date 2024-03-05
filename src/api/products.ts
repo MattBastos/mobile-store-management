@@ -1,5 +1,18 @@
 import { axiosInstance } from "./axiosConfig";
 
+export const getProductById = async (token: string | null, productId: string) => {
+  try {
+    const response = await axiosInstance.get(
+      `products/${productId}`,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+
+    return response;
+  } catch (error) {
+    console.error(`Erro ao buscar produto: ${error}`);
+  }
+}
+
 export const getProducts = async (token: string | null) => {
   try {
     const response = await axiosInstance.get(

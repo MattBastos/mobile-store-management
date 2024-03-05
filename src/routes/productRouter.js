@@ -6,6 +6,7 @@ const productRouter = Router();
 
 productRouter.get(
   '/products/:id',
+  UserValidator.validateToken,
   (req, res, next) => productFactory.getProductById(req, res, next)
 );
 
