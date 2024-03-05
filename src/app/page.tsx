@@ -1,10 +1,12 @@
 import { Layout } from "@/components/Layout";
-import { InvalidUserMessage } from "@/components/InvalidUserMessage";
+import { WelcomeMessage } from "@/components/WelcomeMessage";
+import { ProductTable } from "@/components/Table";
 
 export default function Home() {
   return (
     <Layout>
-      <InvalidUserMessage />
+      <WelcomeMessage />
+      <ProductTable />
     </Layout>
   );
 }
