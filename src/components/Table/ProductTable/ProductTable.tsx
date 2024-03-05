@@ -6,9 +6,20 @@ import { useState, useEffect } from "react";
 
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
 
+import * as S from './styles';
+
 export const ProductTable = () => {
   const [isUserValid, setIsUserValid] = useState(true);
   const [productData, setProductData] = useState<Product[]>([]);
+
+  const tableHeaders = [
+    'Nome',
+    'Marca',
+    'Modelo',
+    'Preço',
+    'Cor',
+    'Ações'
+  ];
 
   const fetchData = async () => {
     try {
@@ -30,17 +41,48 @@ export const ProductTable = () => {
   }, []);
 
   return (
-    <>
+    <S.Container>
       <InvalidUserMessage isUserValid={isUserValid}/>
 
-      {productData.length === 0 && isUserValid ? (
-          <h2 className="text-white">Nenhum produto registrado!</h2>
+      <S.TableContainer>
+        {productData.length === 0 && isUserValid ? (
+          <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
         ) : (
-          productData.map((product, key) => (
-            <h1 key={key} className="text-white">{product.name}</h1>
-          )
-        )
-      )}
-    </>
+          <S.Table>
+            <S.THead>
+              <tr>
+                {tableHeaders.map((th) => (
+                  <S.TH scope="col" key={th}>
+                    {th}
+                  </S.TH>
+                ))}
+              </tr>
+            </S.THead>
+
+            <S.TBody>
+              {productData.map((product) => (
+                <S.TBodyRow key={product.id}>
+                  <S.TD>{product.name}</S.TD>
+
+                  <S.TD>{product.brand}</S.TD>
+
+                  <S.TD>{product.model}</S.TD>
+
+                  <S.TD>{product.price}</S.TD>
+
+                  <S.TD>{product.color}</S.TD>
+
+                  <S.TDActions>
+                    <button>Editar</button>
+
+                    <button>Deletar</button>
+                  </S.TDActions>
+                </S.TBodyRow>
+              ))}
+            </S.TBody>
+          </S.Table>
+        )}
+      </S.TableContainer>
+    </S.Container>
   );
 };
