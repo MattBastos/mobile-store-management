@@ -1,16 +1,23 @@
 'use client';
 
-import { getProducts } from "@/api";
-import { Product } from "@/types";
+import { deleteProduct, getProducts } from "@/api";
+import { Product, ProductNameAndModel } from "@/types";
 import { useState, useEffect } from "react";
 
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
+import { DeleteModal } from "../DeleteModal";
 
 import * as S from './styles';
 
 export const ProductTable = () => {
   const [isUserValid, setIsUserValid] = useState(true);
   const [productData, setProductData] = useState<Product[]>([]);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<ProductNameAndModel>({
+    id: 0,
+    name: '',
+    model: ''
+  });
 
   const tableHeaders = [
     'Nome',
@@ -20,6 +27,24 @@ export const ProductTable = () => {
     'Cor',
     'Ações'
   ];
+
+  const openDeleteModal = (productData: ProductNameAndModel) => {
+    setSelectedProduct(() => ({ ...productData }));
+    setIsDeleteModalOpen(true);
+  }
+
+  const closeDeleteModal = () => setIsDeleteModalOpen(false);
+
+  const onDelete = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      await deleteProduct(token, selectedProduct.id);
+
+      closeDeleteModal();
+    } catch (error) {
+      console.error("Erro ao deletar produto:", error);
+    }
+  }
 
   const fetchData = async () => {
     try {
@@ -39,7 +64,7 @@ export const ProductTable = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return (
     <S.Container>
@@ -49,6 +74,14 @@ export const ProductTable = () => {
         <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
       ) : (
         <S.TableContainer className={ productData.length === 0 ? 'hidden' : '' }>
+          <DeleteModal
+            isModalOpen={isDeleteModalOpen}
+            productName={selectedProduct.name}
+            productModel={selectedProduct.model}
+            closeModal={closeDeleteModal}
+            handleConfirm={onDelete}
+          />
+
           <S.Table>
             <S.THead>
               <tr>
@@ -80,6 +113,7 @@ export const ProductTable = () => {
                       type="button"
                       title="Deletar produto"
                       aria-label="Deletar produto"
+                      onClick={() => openDeleteModal(product)}
                     >
                       Deletar
                     </S.TableDeleteButton>
