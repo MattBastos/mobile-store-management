@@ -2,12 +2,12 @@ import { axiosInstance } from "./axiosConfig";
 
 export const getProducts = async (token: string | null) => {
   try {
-    const { data } = await axiosInstance.get(
+    const response = await axiosInstance.get(
       'products',
       { headers: { Authorization: `Bearer ${token}` } },
     );
 
-    return data;
+    return response;
   } catch (error) {
     console.error(`Erro ao buscar produtos: ${error}`);
   }

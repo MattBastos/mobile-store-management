@@ -13,17 +13,19 @@ export const ProductTable = () => {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const data = await getProducts(token);
+      const response = await getProducts(token);
 
-      if (data) setProductData(data);
+      if (response) {
+        setProductData(response.data);
+      } else {
+        setIsUserValid(false);
+      }
     } catch (error) {
-      setIsUserValid(false);
       console.error("Erro ao buscar produtos:", error);
     }
   }
 
   useEffect(() => {
-    console.log(isUserValid);
     fetchData();
   }, []);
 
@@ -31,7 +33,7 @@ export const ProductTable = () => {
     <>
       <InvalidUserMessage isUserValid={isUserValid}/>
 
-      {productData.length === 0 ? (
+      {productData.length === 0 && isUserValid ? (
           <h2 className="text-white">Nenhum produto registrado!</h2>
         ) : (
           productData.map((product, key) => (
