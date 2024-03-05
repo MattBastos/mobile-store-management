@@ -8,7 +8,12 @@ import * as S from './styles';
 export const InvalidUserMessage = () => {
   const router = useRouter();
 
-  const redirectToLoginPage = () => router.push('/login');
+  const redirectToLoginPage = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+
+    router.push('/login');
+  }
 
   return (
     <S.Container>
