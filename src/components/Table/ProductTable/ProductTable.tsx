@@ -45,7 +45,6 @@ export const ProductTable = () => {
     <S.Container>
       <InvalidUserMessage isUserValid={isUserValid}/>
 
-      
       {productData.length === 0 && isUserValid ? (
         <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
       ) : (
@@ -69,8 +68,21 @@ export const ProductTable = () => {
                   <S.TD>{product.price}</S.TD>
                   <S.TD>{product.color}</S.TD>
                   <S.TDActions>
-                    <button>Editar</button>
-                    <button>Deletar</button>
+                    <S.TableEditButton
+                      type="button"
+                      title="Editar produto"
+                      aria-label="Editar produto"
+                    >
+                      Editar
+                    </S.TableEditButton>
+
+                    <S.TableDeleteButton
+                      type="button"
+                      title="Deletar produto"
+                      aria-label="Deletar produto"
+                    >
+                      Deletar
+                    </S.TableDeleteButton>
                   </S.TDActions>
                 </S.TBodyRow>
               ))}

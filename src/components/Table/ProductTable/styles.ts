@@ -75,3 +75,41 @@ export const TDActions = tw.td`
   py-2
   md:px-4
 `;
+
+export const TableEditButton = tw.button`
+  flex
+  items-center
+  justify-center
+  md:h-9
+  md:w-16
+  lg:h-10
+  lg:w-20
+  p-2
+  rounded-md
+  md:rounded-lg
+  text-white
+  bg-green-500
+  hover:bg-green-600
+  transition-colors
+  duration-200
+  ease-in-out 
+`;
+
+export const TableDeleteButton = tw.button`
+  flex
+  items-center
+  justify-center
+  md:h-9
+  md:w-16
+  lg:h-10
+  lg:w-20
+  p-2
+  rounded-md
+  md:rounded-lg
+  text-white
+  bg-red-500
+  hover:bg-red-600
+  transition-colors
+  duration-200
+  ease-in-out 
+`;
