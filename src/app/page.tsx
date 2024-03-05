@@ -1,10 +1,10 @@
 import { Layout } from "@/components/Layout";
-import { InvalidUserMessage } from "@/components/InvalidUserMessage";
+import { ProductTable } from "@/components/Table";
 
 export default function Home() {
   return (
     <Layout>
-      <InvalidUserMessage />
+      <ProductTable />
     </Layout>
   );
 }

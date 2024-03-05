@@ -1,12 +1,10 @@
 import { axiosInstance } from "./axiosConfig";
 
-export const getProducts = async () => {
+export const getProducts = async (token: string | null) => {
   try {
-    const token = localStorage.getItem('token')
-
     const { data } = await axiosInstance.get(
       'products',
-      { headers: { Authorization: `Bearer: ${token}` } },
+      { headers: { Authorization: `Bearer ${token}` } },
     );
 
     return data;
