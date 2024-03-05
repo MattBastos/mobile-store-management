@@ -1,26 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from "next/navigation";
+import { useSignOut } from "@/hooks";
 import { SignOut } from "@/components/Icons";
 
 import * as S from './styles';
 
 export const SignOutButton = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const router = useRouter();
-
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
-  const handleConfirm = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-
-    closeModal();
-
-    router.push('/login');
-  };
+  const { openModal, isModalOpen, closeModal, handleConfirm } = useSignOut();
 
   return (
     <>
