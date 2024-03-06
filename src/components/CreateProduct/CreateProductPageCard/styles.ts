@@ -4,7 +4,6 @@ export const Container = tw.section`
   bg-white
   cursor-pointer
   text-center
-  hover:bg-gray-100
   w-64
   h-80
   p-4

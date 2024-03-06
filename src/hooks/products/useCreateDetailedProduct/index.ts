@@ -1,0 +1,1 @@
+export { useCreateDetailedProduct } from './useCreateDetailedProduct';
