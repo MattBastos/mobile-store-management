@@ -1,0 +1,2 @@
+export { NavigateToNewProductButton } from './NavigateToNewProductButton';
+

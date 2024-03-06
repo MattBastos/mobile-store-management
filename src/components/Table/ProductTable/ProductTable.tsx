@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
 import { DeleteModal } from "@/components/Table";
-import { CreateProductButton } from "@/components/Table";
+import { NavigateToNewProductButton } from "@/components/Table";
 
 import * as S from './styles';
 import { useProductTable } from "@/hooks";
@@ -34,7 +34,7 @@ export const ProductTable = () => {
 
       {message && <S.Message>{message}</S.Message>}
 
-      <CreateProductButton />
+      <NavigateToNewProductButton />
 
       {productData.length === 0 && isUserValid ? (
         <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>

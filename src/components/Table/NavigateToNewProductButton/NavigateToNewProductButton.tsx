@@ -6,7 +6,7 @@ import { DeviceMobile } from '@/components/Icons';
 
 import * as S from './styles';
 
-export const CreateProductButton = () => {
+export const NavigateToNewProductButton = () => {
   const router = useRouter();
 
   return (

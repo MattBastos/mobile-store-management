@@ -1,9 +1,8 @@
 import tw from "tailwind-styled-components";
 
 export const CreateProductButton = tw.button`
-  max-w-20
   md:max-w-24
-  self-end
+  md:self-end
   flex
   justify-center
   items-center
