@@ -117,8 +117,6 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
                 type="button"
                 title="Cancelar edição"
                 aria-label="Cancelar edição"
-                disabled={false}
-                className={false ? 'bg-opacity-50' : ''}
                 onClick={cancelEdition}
               >
                 Cancelar
