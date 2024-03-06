@@ -1,0 +1,1 @@
+export { CreateProductPageTitle } from './CreateProductPageTitle';
