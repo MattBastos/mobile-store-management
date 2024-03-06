@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Layout } from "@/components/Layout";
-import { CreateProductPageTitle } from '@/components/CreateProduct';
+import { CreateProductPageSection, CreateProductPageTitle } from '@/components/CreateProduct';
 
 export default function NewProduct() {
   const router = useRouter();
@@ -17,6 +17,7 @@ export default function NewProduct() {
   return (
     <Layout>
       <CreateProductPageTitle />
+      <CreateProductPageSection />
     </Layout>
   );
 }
