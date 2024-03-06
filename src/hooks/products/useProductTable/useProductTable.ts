@@ -1,6 +1,6 @@
 import { deleteProduct, getProducts } from "@/api";
 import { Product, DeletableProductInfo } from "@/types";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export const useProductTable = () => {
@@ -38,6 +38,7 @@ export const useProductTable = () => {
       await deleteProduct(token, selectedProduct.id);
 
       setMessage(`${selectedProduct.name} deletado com sucesso!`);
+      fetchData();
       closeDeleteModal();
 
       setTimeout(() => {
@@ -65,10 +66,6 @@ export const useProductTable = () => {
       console.error("Erro ao buscar produtos:", error);
     }
   }
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   return {
     fetchData,

@@ -26,7 +26,7 @@ export const ProductTable = () => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   return (
     <S.Container>
