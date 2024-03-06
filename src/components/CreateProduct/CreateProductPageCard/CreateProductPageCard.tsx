@@ -4,15 +4,17 @@ type CreateProductPageCardProps = {
   title: string;
   description: string;
   productStructure: string[];
+  onClick: () => void;
 }
 
 export const CreateProductPageCard = ({
   title,
   description,
-  productStructure
+  productStructure,
+  onClick
 }: CreateProductPageCardProps) => {
   return (
-    <S.Container>
+    <S.Container onClick={onClick}>
       <S.Title>{title}</S.Title>
 
       <S.Description>{description}</S.Description>

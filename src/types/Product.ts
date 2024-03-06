@@ -9,6 +9,8 @@ export type Product = {
   updatedAt: string;
 }
 
+export type SimpleFormProductInfo = Omit<Product, 'id' | 'createdAt' | 'updatedAt'>;
+
 export type UpdatableProductInfo = Omit<Product, 'createdAt' | 'updatedAt'>;
 
 export type DeletableProductInfo  = Pick<Product, 'id' | 'name' | 'model'>;

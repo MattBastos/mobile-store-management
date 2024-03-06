@@ -1,15 +1,37 @@
 import tw from "tailwind-styled-components";
 
-export const Container = tw.section`
+export const OverlayBackdrop = tw.section`
+  fixed
+  top-0
+  left-0
+  w-full
+  h-full
+  flex
+  items-center
+  justify-center
+  bg-black
+  bg-opacity-50
+  z-10
+`;
+
+export const FormContainer = tw.section`
+  fixed
+  top-1/2
+  left-1/2
+  transform
+  -translate-x-1/2
+  -translate-y-1/2
   bg-gray-100
   p-8
   rounded
   w-[400px]
-  flex flex-col
+  flex
+  flex-col
+  z-20
 `;
 
 export const Title = tw.h1`
-  text-lg
+  text-2xl
   font-bold
   mb-4
   text-secondary
