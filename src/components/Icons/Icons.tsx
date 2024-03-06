@@ -2,5 +2,6 @@
 
 export {
   SignOut,
-  X
+  X,
+  DeviceMobile
 } from '@phosphor-icons/react';

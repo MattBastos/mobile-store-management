@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
-import { DeleteModal } from "../DeleteModal";
+import { DeleteModal } from "@/components/Table";
+import { CreateProductButton } from "@/components/Table";
 
 import * as S from './styles';
 
@@ -82,6 +83,8 @@ export const ProductTable = () => {
       <InvalidUserMessage isUserValid={isUserValid}/>
 
       {message && <S.Message>{message}</S.Message>}
+
+      <CreateProductButton />
 
       {productData.length === 0 && isUserValid ? (
         <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
