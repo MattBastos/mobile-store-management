@@ -30,7 +30,7 @@ export const FormContainer = tw.section`
   z-20
 `;
 
-export const Title = tw.h1`
+export const Title = tw.h2`
   text-2xl
   font-bold
   mb-4
@@ -93,4 +93,18 @@ export const Message = tw.p`
   mb-4
   text-gray-600
   text-center
+`;
+
+export const DetailSection = tw.section`
+  my-4
+  border-gray-400
+  border-y
+  py-2
+`;
+
+export const DetailTitle = tw.h3`
+  text-lg
+  font-semibold
+  text-center
+  text-secondary
 `;

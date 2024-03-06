@@ -38,29 +38,45 @@ export const DetailedProductForm = ({
               />
             </S.InputSection>
 
-            <S.InputSection>
-              <S.Label htmlFor="brand">
-                Marca
-              </S.Label>
-              <S.Input
-                type="text"
-                id="brand"
-                name="brand"
-                onChange={onChange}
-              />
-            </S.InputSection>
+            <S.DetailSection>
+              <S.DetailTitle>Detalhes</S.DetailTitle>
 
-            <S.InputSection>
-              <S.Label htmlFor="model">
-                Modelo
-              </S.Label>
-              <S.Input
-                type="text"
-                id="model"
-                name="model"
-                onChange={onChange}
-              />
-            </S.InputSection>
+              <S.InputSection>
+                <S.Label htmlFor="brand">
+                  Marca
+                </S.Label>
+                <S.Input
+                  type="text"
+                  id="brand"
+                  name="brand"
+                  onChange={onChange}
+                />
+              </S.InputSection>
+
+              <S.InputSection>
+                <S.Label htmlFor="model">
+                  Modelo
+                </S.Label>
+                <S.Input
+                  type="text"
+                  id="model"
+                  name="model"
+                  onChange={onChange}
+                />
+              </S.InputSection>
+
+              <S.InputSection>
+                <S.Label htmlFor="color">
+                  Cor
+                </S.Label>
+                <S.Input
+                  type="text"
+                  id="color"
+                  name="color"
+                  onChange={onChange}
+                />
+              </S.InputSection>
+            </S.DetailSection>
 
             <S.InputSection>
               <S.Label htmlFor="price">
@@ -70,18 +86,6 @@ export const DetailedProductForm = ({
                 type="number"
                 id="price"
                 name="price"
-                onChange={onChange}
-              />
-            </S.InputSection>
-
-            <S.InputSection>
-              <S.Label htmlFor="color">
-                Cor
-              </S.Label>
-              <S.Input
-                type="text"
-                id="color"
-                name="color"
                 onChange={onChange}
               />
             </S.InputSection>
