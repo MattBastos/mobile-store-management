@@ -4,22 +4,28 @@ import { ArrowFatLinesRight } from '@/components/Icons';
 
 type SimpleProductFormProps = {
   formMessage: string;
+  productsContainerMessage: string;
   isFormOpen: boolean;
   isFormDataValid: boolean;
+  isCreationButtonAbled: boolean;
   closeForm: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onConfirm: (e: React.FormEvent) => void;
   simpleProducts: SimpleProduct[];
+  onCreate: () => void;
 }
 
 export const BulkProductForm = ({
   formMessage,
+  productsContainerMessage,
   isFormOpen,
   isFormDataValid,
+  isCreationButtonAbled,
   closeForm,
   onChange,
   onConfirm,
-  simpleProducts
+  simpleProducts,
+  onCreate
 }: SimpleProductFormProps) => {
   return (
     isFormOpen && (
@@ -108,7 +114,6 @@ export const BulkProductForm = ({
                   type="button"
                   title="Cancelar edição"
                   aria-label="Cancelar edição"
-                  disabled={false}
                   onClick={closeForm}
                 >
                   Cancelar
@@ -137,6 +142,19 @@ export const BulkProductForm = ({
                 ))
               )}
             </S.Grid>
+
+            {productsContainerMessage && <S.Message>{productsContainerMessage}</S.Message>}
+
+            <S.CreationButton
+              type="button"
+              title="Criar Produtos"
+              aria-label="Criar Produtos"
+              disabled={isCreationButtonAbled}
+              className={isCreationButtonAbled ? 'bg-opacity-50' : 'hover:bg-blue-600'}
+              onClick={onCreate}
+            >
+              Criar Produtos
+            </S.CreationButton>
           </S.ProductsContainer>
         </S.ProductManagementContainer>
       </>

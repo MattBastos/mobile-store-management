@@ -2,7 +2,7 @@
 
 import { useState, useEffect} from "react";
 import { useCreateDetailedProduct, useCreateSimpleProduct } from "@/hooks";
-import { validateUser } from "@/api";
+import { createManyProducts, validateUser } from "@/api";
 import { FormattedProduct, SimpleProduct } from "@/types";
 
 import {
@@ -18,9 +18,9 @@ import * as S from './styles';
 export const CreateProductPageSection = () => {
   const [isUserValid, setIsUserValid] = useState(false);
   const [bulkFormMessage, setBulkFormMessage] = useState("");
+  const [bulkProductsContainerMessage, setBulkProductsContainerMessage] = useState("");
   const [isBulkFormOpen, setIsBulkFormOpen] = useState(false);
   const [simpleProducts, setSimpleProducts] = useState<SimpleProduct[]>([]);
-  const [formattedProducts, setFormattedProducts] = useState<FormattedProduct[]>([]);
   const [bulkFormData, setBulkFormData] = useState<SimpleProduct>({
     name: "",
     brand: "",
@@ -58,6 +58,66 @@ export const CreateProductPageSection = () => {
       setBulkFormMessage("");
     }, 3000);
   }
+
+  const formatProducts = (products: SimpleProduct[]): FormattedProduct[] => {
+    const formattedProducts: FormattedProduct[] = [];
+ 
+    products.forEach((product) => {
+      const existingProductIndex = formattedProducts.findIndex(
+        (formattedProduct) =>
+          formattedProduct.name === product.name &&
+          formattedProduct.brand === product.brand &&
+          formattedProduct.model === product.model
+      );
+  
+      if (existingProductIndex !== -1) {
+        formattedProducts[existingProductIndex].data.push({
+          price: product.price,
+          color: product.color,
+        });
+      } else {
+        const newFormattedProduct: FormattedProduct = {
+          name: product.name,
+          brand: product.brand,
+          model: product.model,
+          data: [
+            {
+              price: product.price,
+              color: product.color,
+            },
+          ],
+        };
+  
+        formattedProducts.push(newFormattedProduct);
+      }
+    });
+  
+    return formattedProducts;
+  };
+
+  const validateCreationButton = () => simpleProducts.length > 0;
+
+  const onCreateManyProducts = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const products = formatProducts(simpleProducts);
+
+      const response = await createManyProducts(token, products);
+
+      if (response?.statusCode === 201) {
+        setBulkProductsContainerMessage("Os produtos foram criados com sucesso!");
+
+        setTimeout(() => {
+          setBulkProductsContainerMessage("");
+          setSimpleProducts([]);
+        }, 3000);
+      } else {
+        setBulkProductsContainerMessage("Você não possui autorização para criar produtos. Tente realizaro o login!");
+      }
+    } catch (error) {
+      console.error(`Você não possui autorização para criar produtos: ${error}`);
+    }
+  };
 
   ////////////////////////////////////////////////////////////
 
@@ -127,12 +187,15 @@ export const CreateProductPageSection = () => {
 
           <BulkProductForm
             formMessage={bulkFormMessage}
+            productsContainerMessage={bulkProductsContainerMessage}
             isFormOpen={isBulkFormOpen}
             isFormDataValid={!isBulkFormDataValid()}
+            isCreationButtonAbled={!validateCreationButton()}
             closeForm={closeBulkForm}
             onChange={bulkFormHandleChange}
             onConfirm={addProduct}
             simpleProducts={simpleProducts}
+            onCreate={onCreateManyProducts}
           />
 
           <CreateProductPageCard

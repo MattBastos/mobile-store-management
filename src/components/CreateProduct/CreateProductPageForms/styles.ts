@@ -73,7 +73,17 @@ export const ButtonSection = tw.section`
 
 export const ConfirmButton = tw.button`
   bg-green-500
-  hover:bg-green-500
+  text-center
+  text-white
+  text-sm
+  md:text-base
+  p-2
+  rounded-md
+  w-full
+`;
+
+export const CreationButton = tw.button`
+  bg-blue-500
   text-center
   text-white
   text-sm
@@ -169,6 +179,7 @@ export const Grid = tw.section`
   md:grid-cols-2
   lg:grid-cols-3
   gap-2
+  mb-4
 `;
 
 export const ProductCard = tw.section`
