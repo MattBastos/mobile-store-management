@@ -1,5 +1,6 @@
 import { SimpleProduct } from '@/types';
 import * as S from '../styles';
+import { ArrowFatLinesRight } from '@/components/Icons';
 
 type SimpleProductFormProps = {
   formMessage: string;
@@ -100,7 +101,7 @@ export const BulkProductForm = ({
                   disabled={isFormDataValid}
                   className={isFormDataValid ? 'bg-opacity-50' : 'hover:bg-green-600'}
                 >
-                  Confirmar
+                  Adicionar
                 </S.ConfirmButton>
 
                 <S.CancelButton
@@ -116,18 +117,22 @@ export const BulkProductForm = ({
             </form>
           </S.BulkFormContainer>
 
-          <S.ProductsContainer>
+          <section className='md:flex hidden'>
+            <ArrowFatLinesRight size={50} color='#22c55e' weight='fill'/>
+          </section>
+
+          <S.ProductsContainer className='lg:w-[600px] md:w-[500px] w-[250px]'>
             <S.Title>Lista de Produtos</S.Title>
 
             <section className='grid gap-2 md:grid-cols-2 lg:grid-cols-3'>
               {simpleProducts.length > 0 && (
                 simpleProducts.map((product, key) => (
-                  <section key={key} className='bg-gray-200 rounded flex flex-col p-3 justify-center items-center'>
-                    <span className='text-gray-600'>Nome: {product.name}</span>
-                    <span className='text-gray-600'>Marca: {product.brand}</span>
-                    <span className='text-gray-600'>Modelo: {product.model}</span>
-                    <span className='text-gray-600'>Perço: {product.price}</span>
-                    <span className='text-gray-600'>Cor: {product.color}</span>
+                  <section key={key} className='bg-gray-200 rounded flex flex-col p-3 justify-center items-center gap-1'>
+                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Nome: {product.name}</span>
+                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Marca: {product.brand}</span>
+                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Modelo: {product.model}</span>
+                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Perço: {product.price}</span>
+                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Cor: {product.color}</span>
                   </section>
                 ))
               )}

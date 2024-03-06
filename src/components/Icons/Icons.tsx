@@ -3,5 +3,6 @@
 export {
   SignOut,
   X,
-  DeviceMobile
+  DeviceMobile,
+  ArrowFatLinesRight
 } from '@phosphor-icons/react';

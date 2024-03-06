@@ -10,7 +10,7 @@ export const OverlayBackdrop = tw.section`
   items-center
   justify-center
   bg-black
-  bg-opacity-50
+  bg-opacity-80
   z-10
 `;
 
@@ -31,7 +31,8 @@ export const FormContainer = tw.section`
 `;
 
 export const Title = tw.h2`
-  text-2xl
+  text-xl
+  lg:text-2xl
   font-bold
   mb-4
   text-secondary
@@ -72,8 +73,11 @@ export const ButtonSection = tw.section`
 
 export const ConfirmButton = tw.button`
   bg-green-500
+  hover:bg-green-500
   text-center
   text-white
+  text-sm
+  md:text-base
   p-2
   rounded-md
   w-full
@@ -84,6 +88,8 @@ export const CancelButton = tw.button`
   hover:bg-red-600
   text-center
   text-white
+  text-sm
+  md:text-base
   p-2
   rounded-md
   w-full
@@ -111,27 +117,37 @@ export const DetailTitle = tw.h3`
 
 export const ProductManagementContainer = tw.section`
   flex
+  justify-around
+  items-center
+  rounded
   fixed
   top-1/2
   left-1/2
   transform
   -translate-x-1/2
   -translate-y-1/2
-  gap-8
+  gap-4
   z-20
 `;
 
 export const BulkFormContainer = tw.section`
   bg-gray-100
-  p-8
+  p-4
+  md:p-8
   rounded
-  w-[400px]
+  w-[250px]
+  md:w-[300px]
+  lg:w-[400px]
   flex
   flex-col
   z-30
 `;
 
 export const ProductsContainer = tw.section`
+  overflow-y-auto
+  max-h-[585px]
+  md:max-h-[625px]
+  lg:max-h-[630px]
   flex
   flex-col
   bg-gray-100
