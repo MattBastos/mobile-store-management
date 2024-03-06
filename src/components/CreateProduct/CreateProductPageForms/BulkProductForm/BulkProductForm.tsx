@@ -117,26 +117,26 @@ export const BulkProductForm = ({
             </form>
           </S.BulkFormContainer>
 
-          <section className='md:flex hidden'>
+          <S.ArrowIconContainer>
             <ArrowFatLinesRight size={50} color='#22c55e' weight='fill'/>
-          </section>
+          </S.ArrowIconContainer>
 
-          <S.ProductsContainer className='lg:w-[600px] md:w-[500px] w-[250px]'>
+          <S.ProductsContainer>
             <S.Title>Lista de Produtos</S.Title>
 
-            <section className='grid gap-2 md:grid-cols-2 lg:grid-cols-3'>
+            <S.Grid>
               {simpleProducts.length > 0 && (
                 simpleProducts.map((product, key) => (
-                  <section key={key} className='bg-gray-200 rounded flex flex-col p-3 justify-center items-center gap-1'>
-                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Nome: {product.name}</span>
-                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Marca: {product.brand}</span>
-                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Modelo: {product.model}</span>
-                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Perço: {product.price}</span>
-                    <span className='text-gray-600 bg-gray-300 p-1 rounded w-full text-start'>Cor: {product.color}</span>
-                  </section>
+                  <S.ProductCard key={key}>
+                    <S.TextDetails>Nome: {product.name}</S.TextDetails>
+                    <S.TextDetails>Marca: {product.brand}</S.TextDetails>
+                    <S.TextDetails>Modelo: {product.model}</S.TextDetails>
+                    <S.TextDetails>Perço: {product.price}</S.TextDetails>
+                    <S.TextDetails>Cor: {product.color}</S.TextDetails>
+                  </S.ProductCard>
                 ))
               )}
-            </section>
+            </S.Grid>
           </S.ProductsContainer>
         </S.ProductManagementContainer>
       </>

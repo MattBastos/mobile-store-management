@@ -143,8 +143,16 @@ export const BulkFormContainer = tw.section`
   z-30
 `;
 
+export const ArrowIconContainer = tw.section`
+  md:flex
+  hidden
+`;
+
 export const ProductsContainer = tw.section`
   overflow-y-auto
+  w-[250px]
+  md:w-[500px]
+  lg:w-[600px]
   max-h-[585px]
   md:max-h-[625px]
   lg:max-h-[630px]
@@ -153,6 +161,32 @@ export const ProductsContainer = tw.section`
   bg-gray-100
   p-8
   rounded
-  w-[700px]
   z-30
+`;
+
+export const Grid = tw.section`
+  grid
+  md:grid-cols-2
+  lg:grid-cols-3
+  gap-2
+`;
+
+export const ProductCard = tw.section`
+  bg-gray-200
+  rounded
+  flex
+  flex-col
+  p-3
+  justify-center
+  items-center
+  gap-1
+`;
+
+export const TextDetails = tw.span`
+  text-gray-600
+  bg-gray-300
+  p-1
+  rounded
+  w-full
+  text-start
 `;
