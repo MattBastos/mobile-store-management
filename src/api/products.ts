@@ -38,9 +38,19 @@ export const updateProduct = async (
       { headers: { Authorization: `Bearer ${token}` } },
     );
 
-    if (status === 200) return 'Produto editado com sucesso!';
+    if (status === 200) {
+      return {
+        statusCode: status,
+        message: 'Produto editado com sucesso!'
+      }
+    }
 
-    if (status === 401) return 'Você não possui autorização para editar produtos!';
+    if (status === 401) {
+      return {
+        statusCode: status,
+        message: 'Você não possui autorização para editar produtos!'
+      }
+    }
   } catch (error) {
     `Erro ao editar produto: ${error}`;
   }

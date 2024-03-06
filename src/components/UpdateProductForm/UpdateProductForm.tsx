@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { getProductById, updateProduct } from "@/api";
 import { UpdatableProductInfo } from "@/types";
+import { InvalidUserMessage } from '@/components/InvalidUserMessage';
 
 import * as S from './styles';
 
@@ -13,6 +14,7 @@ type UpdateProductFormProps = {
 }
 
 export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
+  const [isUserValid, setIsUserValid] = useState(false);
   const [message, setMessage] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<UpdatableProductInfo>({
     id: 0,
@@ -54,6 +56,7 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
       const response = await getProductById(token, productId);
   
       if (response && response.data) {
+        setIsUserValid(true);
         setSelectedProduct(response.data);
         setFormData(response.data);
       }
@@ -69,9 +72,13 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
       const token = localStorage.getItem('token');
       const response = await updateProduct(token, formData);
 
-      if (response) setMessage("Produto atualizado com sucesso!");
+      if (response?.statusCode === 200) {
+        setMessage("Produto atualizado com sucesso!");
+      } else {
+        setMessage("Você não possui autorização para editar produtos!");
+      }
     } catch (error) {
-      setMessage("Você não possui autorização para editar produtos!");
+      console.error(`Você não possui autorização para editar produtos: ${error}`);
     }
   }
 
@@ -80,105 +87,111 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
   }, []);
 
   return (
-    <S.Container>
-      <S.Title>Editando {selectedProduct.name}</S.Title>
+    <>
+      <InvalidUserMessage isUserValid={isUserValid}/>
 
-      <form onSubmit={onUpdate}>
-        <S.InputSection>
-          <S.Label htmlFor="name">
-            Nome
-          </S.Label>
+      {isUserValid && (
+        <S.Container>
+          <S.Title>Editando {selectedProduct.name}</S.Title>
 
-          <S.Input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </S.InputSection>
+          <form onSubmit={onUpdate}>
+            <S.InputSection>
+              <S.Label htmlFor="name">
+                Nome
+              </S.Label>
 
-        <S.InputSection>
-          <S.Label htmlFor="brand">
-            Marca
-          </S.Label>
+              <S.Input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </S.InputSection>
 
-          <S.Input
-            type="text"
-            id="brand"
-            name="brand"
-            value={formData.brand}
-            onChange={handleChange}
-          />
-        </S.InputSection>
+            <S.InputSection>
+              <S.Label htmlFor="brand">
+                Marca
+              </S.Label>
 
-        <S.InputSection>
-          <S.Label htmlFor="model">
-            Modelo
-          </S.Label>
+              <S.Input
+                type="text"
+                id="brand"
+                name="brand"
+                value={formData.brand}
+                onChange={handleChange}
+              />
+            </S.InputSection>
 
-          <S.Input
-            type="text"
-            id="model"
-            name="model"
-            value={formData.model}
-            onChange={handleChange}
-          />
-        </S.InputSection>
+            <S.InputSection>
+              <S.Label htmlFor="model">
+                Modelo
+              </S.Label>
 
-        <S.InputSection>
-          <S.Label htmlFor="price">
-            Preço
-          </S.Label>
+              <S.Input
+                type="text"
+                id="model"
+                name="model"
+                value={formData.model}
+                onChange={handleChange}
+              />
+            </S.InputSection>
 
-          <S.Input
-            type="text"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-          />
-        </S.InputSection>
+            <S.InputSection>
+              <S.Label htmlFor="price">
+                Preço
+              </S.Label>
 
-        <S.InputSection>
-          <S.Label htmlFor="color">
-            Cor
-          </S.Label>
+              <S.Input
+                type="number"
+                id="price"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
+              />
+            </S.InputSection>
 
-          <S.Input
-            type="text"
-            id="color"
-            name="color"
-            value={formData.color}
-            onChange={handleChange}
-          />
-        </S.InputSection>
+            <S.InputSection>
+              <S.Label htmlFor="color">
+                Cor
+              </S.Label>
 
-        {message && <S.Message>{message}</S.Message>}
+              <S.Input
+                type="text"
+                id="color"
+                name="color"
+                value={formData.color}
+                onChange={handleChange}
+              />
+            </S.InputSection>
 
-        <S.ButtonSection>
-          <S.ConfirmButton
-            type="submit"
-            title="Confirmar edição"
-            aria-label="Confirmar edição"
-            disabled={!isFormDataValid()}
-            className={!isFormDataValid() ? 'bg-opacity-50' : ''}
-          >
-            Confirmar
-          </S.ConfirmButton>
+            {message && <S.Message>{message}</S.Message>}
 
-          <S.CancelButton
-            type="button"
-            title="Cancelar edição"
-            aria-label="Cancelar edição"
-            disabled={false}
-            className={false ? 'bg-opacity-50' : ''}
-            onClick={cancelEdition}
-          >
-            Cancelar
-          </S.CancelButton>
-        </S.ButtonSection>
-      </form>
-    </S.Container>
+            <S.ButtonSection>
+              <S.ConfirmButton
+                type="submit"
+                title="Confirmar edição"
+                aria-label="Confirmar edição"
+                disabled={!isFormDataValid()}
+                className={!isFormDataValid() ? 'bg-opacity-50' : 'hover:bg-green-600'}
+              >
+                Confirmar
+              </S.ConfirmButton>
+
+              <S.CancelButton
+                type="button"
+                title="Cancelar edição"
+                aria-label="Cancelar edição"
+                disabled={false}
+                className={false ? 'bg-opacity-50' : ''}
+                onClick={cancelEdition}
+              >
+                Cancelar
+              </S.CancelButton>
+            </S.ButtonSection>
+          </form>
+        </S.Container>
+      )}
+    </>
   )
 };

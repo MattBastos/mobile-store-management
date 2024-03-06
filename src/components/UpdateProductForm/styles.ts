@@ -50,7 +50,6 @@ export const ButtonSection = tw.section`
 
 export const ConfirmButton = tw.button`
   bg-green-500
-  hover:bg-green-600
   text-center
   text-white
   p-2
@@ -70,6 +69,6 @@ export const CancelButton = tw.button`
 
 export const Message = tw.p`
   mb-4
-  text-green-500
+  text-gray-600
   text-center
 `;
