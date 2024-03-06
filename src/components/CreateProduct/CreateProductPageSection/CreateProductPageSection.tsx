@@ -5,7 +5,7 @@ import { useCreateSimpleProduct } from "@/hooks";
 import { validateUser } from "@/api";
 
 import { CreateProductPageCard } from "@/components/CreateProduct";
-import { SimpleProductForm } from "@/components/CreateProduct/CreateProductPageForms";
+import { SimpleProductForm } from "@/components/CreateProduct";
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
 
 import * as S from './styles';

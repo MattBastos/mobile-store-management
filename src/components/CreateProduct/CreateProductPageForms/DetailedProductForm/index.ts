@@ -1,0 +1,1 @@
+export { DetailedProductForm } from './DetailedProductForm';
