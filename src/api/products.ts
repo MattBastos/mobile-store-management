@@ -16,12 +16,24 @@ export const getProductById = async (token: string | null, productId: string) =>
 
 export const getProducts = async (token: string | null) => {
   try {
-    const response = await axiosInstance.get(
+    const { data, status} = await axiosInstance.get(
       'products',
       { headers: { Authorization: `Bearer ${token}` } },
     );
 
-    return response;
+    if (status === 200) {
+      return {
+        statusCode: status,
+        message: data
+      }
+    }
+
+    if (status === 401) {
+      return {
+        statusCode: status,
+        message: 'Você não possui autorização, tente efetuar o login!'
+      }
+    }
   } catch (error) {
     console.error(`Erro ao buscar produtos: ${error}`);
   }
