@@ -21,7 +21,7 @@ export type DetailedProduct = {
   price: number;
 };
 
-export type ProductList = {
+export type FormattedProduct = {
   name: string;
   brand: string;
   model: string;

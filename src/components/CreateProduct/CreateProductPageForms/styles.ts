@@ -108,3 +108,35 @@ export const DetailTitle = tw.h3`
   text-center
   text-secondary
 `;
+
+export const ProductManagementContainer = tw.section`
+  flex
+  fixed
+  top-1/2
+  left-1/2
+  transform
+  -translate-x-1/2
+  -translate-y-1/2
+  gap-8
+  z-20
+`;
+
+export const BulkFormContainer = tw.section`
+  bg-gray-100
+  p-8
+  rounded
+  w-[400px]
+  flex
+  flex-col
+  z-30
+`;
+
+export const ProductsContainer = tw.section`
+  flex
+  flex-col
+  bg-gray-100
+  p-8
+  rounded
+  w-[700px]
+  z-30
+`;
