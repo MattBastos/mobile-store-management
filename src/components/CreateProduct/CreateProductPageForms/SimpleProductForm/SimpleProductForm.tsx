@@ -1,17 +1,21 @@
 import * as S from '../styles';
 
 type SimpleProductFormProps = {
+  message: string;
   isFormOpen: boolean;
   isFormDataValid: boolean;
   closeForm: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick: (e: React.FormEvent) => void;
 }
 
 export const SimpleProductForm = ({
+  message,
   isFormOpen,
   isFormDataValid,
   closeForm,
-  onChange
+  onChange,
+  onClick
 }: SimpleProductFormProps) => {
   return (
     isFormOpen && (
@@ -82,7 +86,7 @@ export const SimpleProductForm = ({
               />
             </S.InputSection>
 
-            {false && <S.Message>{}</S.Message>}
+            {message && <S.Message>{message}</S.Message>}
 
             <S.ButtonSection>
               <S.ConfirmButton
@@ -91,6 +95,7 @@ export const SimpleProductForm = ({
                 aria-label="Confirmar edição"
                 disabled={isFormDataValid}
                 className={isFormDataValid ? 'bg-opacity-50' : 'hover:bg-green-600'}
+                onClick={onClick}
               >
                 Confirmar
               </S.ConfirmButton>

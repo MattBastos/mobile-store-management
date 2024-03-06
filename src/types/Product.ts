@@ -9,7 +9,7 @@ export type Product = {
   updatedAt: string;
 }
 
-export type SimpleFormProductInfo = Omit<Product, 'id' | 'createdAt' | 'updatedAt'>;
+export type SimpleProduct = Omit<Product, 'id' | 'createdAt' | 'updatedAt'>;
 
 export type UpdatableProductInfo = Omit<Product, 'createdAt' | 'updatedAt'>;
 

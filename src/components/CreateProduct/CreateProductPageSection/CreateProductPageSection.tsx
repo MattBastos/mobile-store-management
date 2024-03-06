@@ -1,17 +1,18 @@
 'use client';
 
 import { useState } from "react";
-import { SimpleFormProductInfo } from "@/types";
+import { SimpleProduct } from "@/types";
+import { createSimpleProduct } from "@/api";
 
 import { CreateProductPageCard } from "@/components/CreateProduct";
+import { SimpleProductForm } from "@/components/CreateProduct/CreateProductPageForms";
 
 import * as S from './styles';
-import { SimpleProductForm } from "../CreateProductPageForms";
 
 export const CreateProductPageSection = () => {
   const [message, setMessage] = useState("");
   const [isSimpleFormOpen, setIsSimpleFormOpen] = useState(false);
-  const [simpleFormData, setSimpleFormData] = useState<SimpleFormProductInfo>({
+  const [simpleFormData, setSimpleFormData] = useState<SimpleProduct>({
     name: "",
     brand: "",
     model: "",
@@ -46,13 +47,32 @@ export const CreateProductPageSection = () => {
     return name.trim() !== "" && brand.trim() !== "" && model.trim() !== "" && price > 0 && color.trim() !== "";
   };
 
+  const onCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem('token');
+      const response = await createSimpleProduct(token, simpleFormData);
+
+      if (response?.statusCode === 201) {
+        setMessage("Produto criado com sucesso!");
+      } else {
+        setMessage("Você não possui autorização para criar produtos. Tente realizaro o login!");
+      }
+    } catch (error) {
+      console.error(`Você não possui autorização para criar produtos: ${error}`);
+    }
+  };
+
   return (
     <S.Container>
       <SimpleProductForm
+        message={message}
         isFormOpen={isSimpleFormOpen}
         isFormDataValid={!isFormDataValid()}
         closeForm={closeSimpleForm}
         onChange={handleChange}
+        onClick={onCreate}
       />
 
       <CreateProductPageCard
