@@ -1,3 +1,5 @@
+import * as S from './styles';
+
 type CreateProductPageCardProps = {
   title: string;
   description: string;
@@ -10,18 +12,20 @@ export const CreateProductPageCard = ({
   productStructure
 }: CreateProductPageCardProps) => {
   return (
-    <section className="bg-gray-100 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-      <h2 className="text-xl font-semibold mb-4">
-        {title}
-      </h2>
+    <S.Container>
+      <S.Title>{title}</S.Title>
 
-      <p className="mb-4">{description}</p>
+      <S.Description>{description}</S.Description>
 
-      <section>
+      <S.SeparatorLine />
+
+      <S.DetailsContainer>
         {productStructure.map((structure) => (
-          <span key={structure}>{structure}</span>
+          <S.TextDetails key={structure}>{structure}</S.TextDetails>
         ))}
-      </section>
-    </section>
+      </S.DetailsContainer>
+
+      <S.SeparatorLine />
+    </S.Container>
   );
 };
