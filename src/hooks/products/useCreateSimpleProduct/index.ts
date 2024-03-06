@@ -1,0 +1,1 @@
+export { useCreateSimpleProduct } from './useCreateSimpleProduct';
