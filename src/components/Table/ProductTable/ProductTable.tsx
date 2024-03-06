@@ -1,7 +1,7 @@
 'use client';
 
 import { deleteProduct, getProducts } from "@/api";
-import { Product, ProductNameAndModel } from "@/types";
+import { Product, DeletableProductInfo } from "@/types";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +14,7 @@ export const ProductTable = () => {
   const [isUserValid, setIsUserValid] = useState(true);
   const [productData, setProductData] = useState<Product[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<ProductNameAndModel>({
+  const [selectedProduct, setSelectedProduct] = useState<DeletableProductInfo>({
     id: 0,
     name: '',
     model: ''
@@ -31,7 +31,7 @@ export const ProductTable = () => {
     'Ações'
   ];
 
-  const openDeleteModal = (productData: ProductNameAndModel) => {
+  const openDeleteModal = (productData: DeletableProductInfo) => {
     setSelectedProduct(() => ({ ...productData }));
     setIsDeleteModalOpen(true);
   }

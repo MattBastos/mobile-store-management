@@ -9,4 +9,6 @@ export type Product = {
   updatedAt: string;
 }
 
-export type ProductNameAndModel = Pick<Product, 'id' | 'name' | 'model'>;
+export type UpdatableProductInfo = Omit<Product, 'createdAt' | 'updatedAt'>;
+
+export type DeletableProductInfo  = Pick<Product, 'id' | 'name' | 'model'>;

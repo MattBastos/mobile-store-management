@@ -1,3 +1,4 @@
+import { UpdatableProductInfo } from "@/types";
 import { axiosInstance } from "./axiosConfig";
 
 export const getProductById = async (token: string | null, productId: string) => {
@@ -26,19 +27,39 @@ export const getProducts = async (token: string | null) => {
   }
 };
 
-export const deleteProduct = async (token: string | null, productId: number) => {
+export const updateProduct = async (
+  token: string | null,
+  { id, ...product }: UpdatableProductInfo
+) => {
+  try {
+    const { status } = await axiosInstance.put(
+      `products/${id}`,
+      product,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+
+    if (status === 200) return 'Produto editado com sucesso!';
+
+    if (status === 401) return 'Você não possui autorização para editar produtos!';
+  } catch (error) {
+    `Erro ao editar produto: ${error}`;
+  }
+}
+
+export const deleteProduct = async (
+  token: string | null,
+  productId: number
+) => {
   try {
     const { status } = await axiosInstance.delete(
       `products/${productId}`,
       { headers: { Authorization: `Bearer ${token}` } },
     );
 
-    if (status === 200) {
-      return 'Produto deletado com sucesso!';
-    }
+    if (status === 200) return 'Produto deletado com sucesso!';
 
-    return null;
+    if (status === 401) return 'Você não possui autorização para deletar produtos!';
   } catch (error) {
-    `Erro ao deletar carro: ${error}`;
+    `Erro ao deletar produto: ${error}`;
   }
 };
