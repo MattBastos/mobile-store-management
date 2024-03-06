@@ -41,6 +41,10 @@ export const useCreateSimpleProduct = () => {
 
       if (response?.statusCode === 201) {
         setSimpleFormMessage("Produto criado com sucesso!");
+
+        setTimeout(() => {
+          setSimpleFormMessage("");
+        }, 3000);
       } else {
         setSimpleFormMessage("Você não possui autorização para criar produtos. Tente realizaro o login!");
       }
