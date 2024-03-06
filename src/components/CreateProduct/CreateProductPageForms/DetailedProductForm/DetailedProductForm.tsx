@@ -6,7 +6,7 @@ type DetailedProductFormProps = {
   isFormDataValid: boolean;
   closeForm: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onClick: (e: React.FormEvent) => void;
+  onSubmit: (e: React.FormEvent) => void;
 }
 
 export const DetailedProductForm = ({
@@ -15,7 +15,7 @@ export const DetailedProductForm = ({
   isFormDataValid,
   closeForm,
   onChange,
-  onClick
+  onSubmit
 }: DetailedProductFormProps) => {
   return (
     isFormOpen && (
@@ -25,7 +25,7 @@ export const DetailedProductForm = ({
         <S.FormContainer>
           <S.Title>Insira as informações do produto</S.Title>
 
-          <form onSubmit={() => {}}>
+          <form onSubmit={onSubmit}>
             <S.InputSection>
               <S.Label htmlFor="name">
                 Nome
@@ -99,7 +99,6 @@ export const DetailedProductForm = ({
                 aria-label="Confirmar edição"
                 disabled={isFormDataValid}
                 className={isFormDataValid ? 'bg-opacity-50' : 'hover:bg-green-600'}
-                onClick={onClick}
               >
                 Confirmar
               </S.ConfirmButton>

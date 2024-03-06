@@ -2,7 +2,7 @@
 
 import { useState, useEffect} from "react";
 import { useCreateSimpleProduct } from "@/hooks";
-import { validateUser } from "@/api";
+import { createDetailedProduct, validateUser } from "@/api";
 import { DetailedProduct } from "@/types";
 
 import { CreateProductPageCard } from "@/components/CreateProduct";
@@ -55,6 +55,27 @@ export const CreateProductPageSection = () => {
     return name.trim() !== "" && brand.trim() !== "" && model.trim() !== "" && price > 0 && color.trim() !== "";
   };
 
+  const onCreateDetailedProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem('token');
+      const response = await createDetailedProduct(token, detailedFormData);
+
+      if (response?.statusCode === 201) {
+        setDetailedFormMessage("Produto criado com sucesso!");
+
+        setTimeout(() => {
+          setDetailedFormMessage("");
+        }, 3000);
+      } else {
+        setDetailedFormMessage("Você não possui autorização para criar produtos. Tente realizaro o login!");
+      }
+    } catch (error) {
+      console.error(`Você não possui autorização para criar produtos: ${error}`);
+    }
+  };
+
   /////////////////////////////////////////////////////////////////////////
 
   const {
@@ -103,7 +124,7 @@ export const CreateProductPageSection = () => {
             isFormDataValid={!isSimpleFormDataValid()}
             closeForm={closeSimpleForm}
             onChange={simpleFormHandleChange}
-            onClick={onCreateSimpleProduct}
+            onSubmit={onCreateSimpleProduct}
           />
 
           <DetailedProductForm
@@ -112,7 +133,7 @@ export const CreateProductPageSection = () => {
             isFormDataValid={!isDetailedFormDataValid()}
             closeForm={closeDetailedForm}
             onChange={detailedFormHandleChange}
-            onClick={() => {}}
+            onSubmit={onCreateDetailedProduct}
           />
 
           <CreateProductPageCard

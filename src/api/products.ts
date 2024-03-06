@@ -1,4 +1,4 @@
-import { SimpleProduct, UpdatableProductInfo } from "@/types";
+import { DetailedProduct, SimpleProduct, UpdatableProductInfo } from "@/types";
 import { axiosInstance } from "./axiosConfig";
 
 export const getProductById = async (token: string | null, productId: string) => {
@@ -46,6 +46,35 @@ export const createSimpleProduct = async (
   try {
     const { status } = await axiosInstance.post(
       'simpleProduct',
+      product,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+
+    if (status === 201) {
+      return {
+        statusCode: status,
+        message: 'Produto criado com sucesso!'
+      }
+    }
+
+    if (status === 401) {
+      return {
+        statusCode: status,
+        message: 'Você não possui autorização para criar produtos!'
+      }
+    }
+  } catch (error) {
+    `Erro ao criar produto: ${error}`;
+  }
+}
+
+export const createDetailedProduct = async (
+  token: string | null,
+  product: DetailedProduct
+) => {
+  try {
+    const { status } = await axiosInstance.post(
+      'detailedProduct',
       product,
       { headers: { Authorization: `Bearer ${token}` } },
     );
