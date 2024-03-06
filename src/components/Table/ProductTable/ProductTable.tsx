@@ -1,8 +1,9 @@
 'use client';
 
 import { deleteProduct, getProducts } from "@/api";
-import { Product, ProductNameAndModel } from "@/types";
+import { Product, DeletableProductInfo } from "@/types";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
 import { DeleteModal } from "../DeleteModal";
@@ -13,11 +14,13 @@ export const ProductTable = () => {
   const [isUserValid, setIsUserValid] = useState(true);
   const [productData, setProductData] = useState<Product[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<ProductNameAndModel>({
+  const [selectedProduct, setSelectedProduct] = useState<DeletableProductInfo>({
     id: 0,
     name: '',
     model: ''
   });
+
+  const router = useRouter();
 
   const tableHeaders = [
     'Nome',
@@ -28,7 +31,7 @@ export const ProductTable = () => {
     'Ações'
   ];
 
-  const openDeleteModal = (productData: ProductNameAndModel) => {
+  const openDeleteModal = (productData: DeletableProductInfo) => {
     setSelectedProduct(() => ({ ...productData }));
     setIsDeleteModalOpen(true);
   }
@@ -45,6 +48,8 @@ export const ProductTable = () => {
       console.error("Erro ao deletar produto:", error);
     }
   }
+
+  const updateProduct = (productId: number) => router.push(String(productId));
 
   const fetchData = async () => {
     try {
@@ -105,6 +110,7 @@ export const ProductTable = () => {
                       type="button"
                       title="Editar produto"
                       aria-label="Editar produto"
+                      onClick={() => updateProduct(product.id)}
                     >
                       Editar
                     </S.TableEditButton>

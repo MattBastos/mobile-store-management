@@ -3,6 +3,16 @@ class ProductController {
     this.service = service;
   }
 
+  async getProductById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const product = await this.service.getProductById(id);
+      return res.status(200).json(product);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async getAllProducts(_req, res, next) {
     try {
       const allProducts = await this.service.getAllProducts();

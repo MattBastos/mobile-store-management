@@ -6,6 +6,11 @@ class ProductService {
     this.model = model;
   }
 
+  async getProductById(id) {
+    const product = await this.model.findOne({ where: { id } });
+    return product;
+  }
+
   async getAllProducts() {
     const allProducts = await this.model.findAll();
     return allProducts.map((product) => product.dataValues);
