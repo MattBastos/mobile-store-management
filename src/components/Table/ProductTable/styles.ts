@@ -113,3 +113,10 @@ export const TableDeleteButton = tw.button`
   duration-200
   ease-in-out 
 `;
+
+export const Message = tw.p`
+  md:text-lg
+  lg:text-xl
+  text-gray-100
+  text-center
+`;

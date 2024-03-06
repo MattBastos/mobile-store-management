@@ -17,7 +17,9 @@ class ProductController {
     try {
       const allProducts = await this.service.getAllProducts();
 
-      return res.status(200).json(allProducts);
+      if (allProducts) return res.status(200).json(allProducts);
+
+      return res.status(401).json('Token not found or invalid format!');
     } catch (error) {
       next(error);
     }
@@ -70,7 +72,7 @@ class ProductController {
 
       await this.service.deleteProduct(id);
 
-      return res.status(204).end();
+      return res.status(200).end();
     } catch (error) {
       next(error);
     }

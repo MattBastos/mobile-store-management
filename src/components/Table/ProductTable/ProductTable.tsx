@@ -11,6 +11,7 @@ import { DeleteModal } from "../DeleteModal";
 import * as S from './styles';
 
 export const ProductTable = () => {
+  const [message, setMessage] = useState("");
   const [isUserValid, setIsUserValid] = useState(true);
   const [productData, setProductData] = useState<Product[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -43,7 +44,12 @@ export const ProductTable = () => {
       const token = localStorage.getItem('token');
       await deleteProduct(token, selectedProduct.id);
 
+      setMessage(`${selectedProduct.name} deletado com sucesso!`);
       closeDeleteModal();
+
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
     } catch (error) {
       console.error("Erro ao deletar produto:", error);
     }
@@ -56,9 +62,9 @@ export const ProductTable = () => {
       const token = localStorage.getItem('token');
       const response = await getProducts(token);
 
-      if (response && response.data) {
+      if (response?.statusCode === 200 && response.message) {
         setIsUserValid(true);
-        setProductData(response.data);
+        setProductData(response.message);
       } else {
         setIsUserValid(false);
       }
@@ -74,6 +80,8 @@ export const ProductTable = () => {
   return (
     <S.Container>
       <InvalidUserMessage isUserValid={isUserValid}/>
+
+      {message && <S.Message>{message}</S.Message>}
 
       {productData.length === 0 && isUserValid ? (
         <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
