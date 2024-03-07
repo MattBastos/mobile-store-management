@@ -18,6 +18,7 @@ export const RegisterForm = () => {
           type="text"
           id="username"
           name="username"
+          placeholder="Mínimo de 5 caracteres."
           onChange={handleChange}
         />
       </S.InputSection>
@@ -31,6 +32,7 @@ export const RegisterForm = () => {
           type="email"
           id="email"
           name="email"
+          placeholder="email@email.com"
           onChange={handleChange}
         />
       </S.InputSection>
@@ -44,6 +46,7 @@ export const RegisterForm = () => {
           type="password"
           id="password"
           name="password"
+          placeholder="Mínimo de 6 caracteres."
           onChange={handleChange}
         />
       </S.InputSection>
