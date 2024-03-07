@@ -1,3 +1,6 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import {
   DeviceMobile,
   ListDashes,
@@ -8,9 +11,10 @@ import { Logo } from '@/components/Logo';
 
 import * as S from './styles';
 
-const fullYear = new Date().getFullYear();
-
 export const Footer = () => {
+  const pathname = usePathname();
+  const fullYear = new Date().getFullYear();
+
   return (
     <S.Container>
       <S.SeparatorLine />
@@ -44,21 +48,23 @@ export const Footer = () => {
           </S.List>
         </S.Section>
 
-        <S.Section>
-          <S.Title>Mapa do Site</S.Title>
+        {pathname !== '/login' && (
+          <S.Section>
+            <S.Title>Mapa do Site</S.Title>
 
-          <S.List>
-            <S.Link href="/">
-              <ListDashes weight='fill' />
-              <S.LinkTitle>Lista de Produtos</S.LinkTitle>
-            </S.Link>
+            <S.List>
+              <S.Link href="/">
+                <ListDashes weight='fill' />
+                <S.LinkTitle>Lista de Produtos</S.LinkTitle>
+              </S.Link>
 
-            <S.Link href="/newproduct">
-              <DeviceMobile weight='fill' />
-              <S.LinkTitle>Criar Produtos</S.LinkTitle>
-            </S.Link>
-          </S.List>
-        </S.Section>
+              <S.Link href="/newproduct">
+                <DeviceMobile weight='fill' />
+                <S.LinkTitle>Criar Produtos</S.LinkTitle>
+              </S.Link>
+            </S.List>
+          </S.Section>
+        )}
       </S.Content>
 
       <S.CopyrightContainer>

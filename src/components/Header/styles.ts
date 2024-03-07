@@ -14,6 +14,13 @@ export const Container = tw.header`
   shadow-xl
 `;
 
+export const Nav = tw.nav`
+  flex
+  justify-center
+  items-center
+  gap-4
+`;
+
 export const Link = tw(NextLink)`
   flex
   items-center
@@ -30,4 +37,8 @@ export const Link = tw(NextLink)`
 export const LinkTitle = tw.h3`
   text-xl
   font-semibold
+`;
+
+export const SignOutButtonContainer = tw.section`
+  mr-4
 `;
