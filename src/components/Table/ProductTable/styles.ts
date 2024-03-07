@@ -36,6 +36,8 @@ export const Container = tw.section`
 export const TableContainer = tw.section`
   relative
   w-full
+  max-h-[625px]
+  overflow-y-auto
   overflow-x-auto
   rounded-t-xl
 `;

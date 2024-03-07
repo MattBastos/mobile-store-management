@@ -88,7 +88,6 @@ export const useProductTable = () => {
     fetchData,
     isUserValid,
     message,
-    productData,
     isDeleteModalOpen,
     selectedProduct,
     closeDeleteModal,
