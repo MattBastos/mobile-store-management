@@ -36,17 +36,19 @@ export const ProductTable = () => {
 
       {message && <S.Message>{message}</S.Message>}
 
-      <S.SearchBarContainer>
-        <S.SearchBar
-          type="search"
-          name="search"
-          placeholder="Pesquise por Nome, Marca, Modelo, Preço ou Cor..."
-          value={searchTerm}
-          onChange={handleSearchChange}  
-        />
-        
-        <NavigateToNewProductButton />
-      </S.SearchBarContainer>
+      {isUserValid && (
+        <S.SearchBarContainer>
+          <S.SearchBar
+            type="search"
+            name="search"
+            placeholder="Pesquise por Nome, Marca, Modelo, Preço ou Cor..."
+            value={searchTerm}
+            onChange={handleSearchChange}  
+          />
+          
+          <NavigateToNewProductButton />
+        </S.SearchBarContainer>
+      )}
 
       {filteredProductData.length === 0 && isUserValid ? (
         <S.NoProductsMessage>Nenhum produto encontrado!</S.NoProductsMessage>
