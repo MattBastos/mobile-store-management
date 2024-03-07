@@ -1,5 +1,24 @@
 import tw from "tailwind-styled-components";
 
+export const SearchBarContainer = tw.section`
+  flex
+  justify-between
+`;
+
+export const SearchBar = tw.input`
+  p-1
+  md:p-2
+  w-2/4
+  border
+  rounded-md
+  border-gray-400
+  focus:border-primary
+  focus:outline-none
+  transition-colors
+  duration-200
+  ease-in-out
+`;
+
 export const NoProductsMessage = tw.h2`
   text-xl
   text-center

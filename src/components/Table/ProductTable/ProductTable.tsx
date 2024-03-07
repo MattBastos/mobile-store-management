@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect } from "react";
+import { useProductTable } from "@/hooks";
 
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
 import { DeleteModal } from "@/components/Table";
 import { NavigateToNewProductButton } from "@/components/Table";
 
 import * as S from './styles';
-import { useProductTable } from "@/hooks";
 
 export const ProductTable = () => {
   const {
@@ -21,7 +21,10 @@ export const ProductTable = () => {
     onDelete,
     tableHeaders,
     updateProduct,
-    openDeleteModal
+    openDeleteModal,
+    searchTerm,
+    handleSearchChange,
+    filteredProductData
   } = useProductTable();
 
   useEffect(() => {
@@ -34,12 +37,22 @@ export const ProductTable = () => {
 
       {message && <S.Message>{message}</S.Message>}
 
-      <NavigateToNewProductButton />
+      <S.SearchBarContainer>
+        <S.SearchBar
+          type="search"
+          name="search"
+          placeholder="Pesquise por Nome, Marca, Modelo, Preço ou Cor..."
+          value={searchTerm}
+          onChange={handleSearchChange}  
+        />
+        
+        <NavigateToNewProductButton />
+      </S.SearchBarContainer>
 
-      {productData.length === 0 && isUserValid ? (
-        <S.NoProductsMessage>Nenhum produto registrado!</S.NoProductsMessage>
+      {filteredProductData.length === 0 && isUserValid ? (
+        <S.NoProductsMessage>Nenhum produto encontrado!</S.NoProductsMessage>
       ) : (
-        <S.TableContainer className={ productData.length === 0 ? 'hidden' : '' }>
+        <S.TableContainer className={ filteredProductData.length === 0 ? 'hidden' : '' }>
           <DeleteModal
             isModalOpen={isDeleteModalOpen}
             productName={selectedProduct.name}
@@ -59,7 +72,7 @@ export const ProductTable = () => {
               </tr>
             </S.THead>
             <S.TBody>
-              {productData.map((product) => (
+              {filteredProductData.map((product) => (
                 <S.TBodyRow key={product.id}>
                   <S.TD>{product.name}</S.TD>
                   <S.TD>{product.brand}</S.TD>

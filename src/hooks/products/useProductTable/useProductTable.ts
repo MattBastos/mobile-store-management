@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export const useProductTable = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const [message, setMessage] = useState("");
   const [isUserValid, setIsUserValid] = useState(true);
   const [productData, setProductData] = useState<Product[]>([]);
@@ -24,6 +25,22 @@ export const useProductTable = () => {
     'Cor',
     'Ações'
   ];
+
+  const filteredProductData = productData.filter((product) => {
+    const searchRegex = new RegExp(searchTerm, "i");
+
+    return (
+      searchRegex.test(product.name) ||
+      searchRegex.test(product.brand) ||
+      searchRegex.test(product.model) ||
+      searchRegex.test(product.price.toString()) ||
+      searchRegex.test(product.color)
+    );
+  });
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  }
 
   const openDeleteModal = (productData: DeletableProductInfo) => {
     setSelectedProduct(() => ({ ...productData }));
@@ -78,6 +95,9 @@ export const useProductTable = () => {
     onDelete,
     tableHeaders,
     updateProduct,
-    openDeleteModal
+    openDeleteModal,
+    searchTerm,
+    handleSearchChange,
+    filteredProductData
   }
 };
