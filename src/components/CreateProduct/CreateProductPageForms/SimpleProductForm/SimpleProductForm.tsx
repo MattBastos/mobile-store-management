@@ -1,46 +1,40 @@
-'use client';
+import * as S from '../styles';
 
-import { useUpdateProduct } from '@/hooks';
-import { InvalidUserMessage } from '@/components/InvalidUserMessage';
-
-import * as S from './styles';
-
-type UpdateProductFormProps = {
-  productId: string;
+type SimpleProductFormProps = {
+  message: string;
+  isFormOpen: boolean;
+  isFormDataValid: boolean;
+  closeForm: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: React.FormEvent) => void;
 }
 
-export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
-  const {
-    isUserValid,
-    selectedProduct,
-    onUpdate,
-    formData,
-    handleChange,
-    message,
-    isFormDataValid,
-    cancelEdition
-  } = useUpdateProduct(productId);
-
+export const SimpleProductForm = ({
+  message,
+  isFormOpen,
+  isFormDataValid,
+  closeForm,
+  onChange,
+  onSubmit
+}: SimpleProductFormProps) => {
   return (
-    <>
-      <InvalidUserMessage isUserValid={isUserValid}/>
+    isFormOpen && (
+      <>
+        <S.OverlayBackdrop onClick={closeForm}/>
 
-      {isUserValid && (
-        <S.Container>
-          <S.Title>Editando {selectedProduct.name}</S.Title>
+        <S.FormContainer>
+          <S.Title>Insira as informações do produto</S.Title>
 
-          <form onSubmit={onUpdate}>
+          <form onSubmit={onSubmit}>
             <S.InputSection>
               <S.Label htmlFor="name">
                 Nome
               </S.Label>
-
               <S.Input
                 type="text"
                 id="name"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
+                onChange={onChange}
               />
             </S.InputSection>
 
@@ -48,13 +42,11 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
               <S.Label htmlFor="brand">
                 Marca
               </S.Label>
-
               <S.Input
                 type="text"
                 id="brand"
                 name="brand"
-                value={formData.brand}
-                onChange={handleChange}
+                onChange={onChange}
               />
             </S.InputSection>
 
@@ -62,13 +54,11 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
               <S.Label htmlFor="model">
                 Modelo
               </S.Label>
-
               <S.Input
                 type="text"
                 id="model"
                 name="model"
-                value={formData.model}
-                onChange={handleChange}
+                onChange={onChange}
               />
             </S.InputSection>
 
@@ -76,13 +66,11 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
               <S.Label htmlFor="price">
                 Preço
               </S.Label>
-
               <S.Input
                 type="number"
                 id="price"
                 name="price"
-                value={formData.price}
-                onChange={handleChange}
+                onChange={onChange}
               />
             </S.InputSection>
 
@@ -90,13 +78,11 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
               <S.Label htmlFor="color">
                 Cor
               </S.Label>
-
               <S.Input
                 type="text"
                 id="color"
                 name="color"
-                value={formData.color}
-                onChange={handleChange}
+                onChange={onChange}
               />
             </S.InputSection>
 
@@ -107,8 +93,8 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
                 type="submit"
                 title="Confirmar edição"
                 aria-label="Confirmar edição"
-                disabled={!isFormDataValid()}
-                className={!isFormDataValid() ? 'bg-opacity-50' : 'hover:bg-green-600'}
+                disabled={isFormDataValid}
+                className={isFormDataValid ? 'bg-opacity-50' : 'hover:bg-green-600'}
               >
                 Confirmar
               </S.ConfirmButton>
@@ -117,14 +103,15 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
                 type="button"
                 title="Cancelar edição"
                 aria-label="Cancelar edição"
-                onClick={cancelEdition}
+                disabled={false}
+                onClick={closeForm}
               >
                 Cancelar
               </S.CancelButton>
             </S.ButtonSection>
           </form>
-        </S.Container>
-      )}
-    </>
-  )
+        </S.FormContainer>
+      </>
+    )
+  );
 };

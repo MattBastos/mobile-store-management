@@ -1,4 +1,9 @@
-import { UpdatableProductInfo } from "@/types";
+import {
+  DetailedProduct,
+  FormattedProduct,
+  SimpleProduct,
+  UpdatableProductInfo
+} from "@/types";
 import { axiosInstance } from "./axiosConfig";
 
 export const getProductById = async (token: string | null, productId: string) => {
@@ -36,6 +41,93 @@ export const getProducts = async (token: string | null) => {
     }
   } catch (error) {
     console.error(`Erro ao buscar produtos: ${error}`);
+  }
+};
+
+export const createSimpleProduct = async (
+  token: string | null,
+  product: SimpleProduct
+) => {
+  try {
+    const { status } = await axiosInstance.post(
+      'simpleProduct',
+      product,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+
+    if (status === 201) {
+      return {
+        statusCode: status,
+        message: 'Produto criado com sucesso!'
+      }
+    }
+
+    if (status === 401) {
+      return {
+        statusCode: status,
+        message: 'Você não possui autorização para criar produtos!'
+      }
+    }
+  } catch (error) {
+    `Erro ao criar produto: ${error}`;
+  }
+}
+
+export const createDetailedProduct = async (
+  token: string | null,
+  product: DetailedProduct
+) => {
+  try {
+    const { status } = await axiosInstance.post(
+      'detailedProduct',
+      product,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+
+    if (status === 201) {
+      return {
+        statusCode: status,
+        message: 'Produto criado com sucesso!'
+      }
+    }
+
+    if (status === 401) {
+      return {
+        statusCode: status,
+        message: 'Você não possui autorização para criar produtos!'
+      }
+    }
+  } catch (error) {
+    `Erro ao criar produto: ${error}`;
+  }
+}
+
+export const createManyProducts = async (
+  token: string | null,
+  products: FormattedProduct[]
+) => {
+  try {
+    const { status } = await axiosInstance.post(
+      'manyProducts',
+      products,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+
+    if (status === 201) {
+      return {
+        statusCode: status,
+        message: 'Os produtos foram criados com sucesso!'
+      }
+    }
+
+    if (status === 401) {
+      return {
+        statusCode: status,
+        message: 'Você não possui autorização para criar produtos!'
+      }
+    }
+  } catch (error) {
+    `Erro ao criar produtos: ${error}`;
   }
 };
 

@@ -1,0 +1,1 @@
+export { CreateProductPageCard } from './CreateProductPageCard';

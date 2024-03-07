@@ -1,0 +1,1 @@
+export { useCreateManyProducts } from './useCreateManyProducts';

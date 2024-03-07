@@ -1,0 +1,1 @@
+export { useProductTable } from './useProductTable';

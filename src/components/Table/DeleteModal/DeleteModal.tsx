@@ -1,5 +1,4 @@
 import { X } from '@/components/Icons';
-import { ReactNode } from 'react';
 
 import * as S from './styles';
 

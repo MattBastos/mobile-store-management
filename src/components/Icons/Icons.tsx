@@ -2,5 +2,7 @@
 
 export {
   SignOut,
-  X
+  X,
+  DeviceMobile,
+  ArrowFatLinesRight
 } from '@phosphor-icons/react';

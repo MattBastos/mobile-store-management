@@ -2,6 +2,7 @@ import tw from "tailwind-styled-components";
 
 export const SignOutButton = tw.button`
   flex
+  justify-center
   items-center
   gap-2
   bg-primary
