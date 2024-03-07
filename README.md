@@ -5,7 +5,7 @@ Este projeto consiste em uma aplicação web de gerenciamento de uma loja de cel
 ## Stacks
 
 - Typescript
-- -Javascript
+- Javascript
 - React
 - Next.js
 - Tailwind CSS
@@ -214,7 +214,7 @@ URL Base:
   "details": {
     "brand": "Xiaomi",
     "model": "Redmi 9",
-    "color": Vermelho
+    "color": Preto
   },
   "price": 10000,
 }
@@ -241,11 +241,11 @@ URL Base:
     "data": [
       {
         "price": 10000,
-        "color": "red"
+        "color": "Azul"
       },
       {
         "price": 10000,
-        "color": "blue"
+        "color": "Verde"
       }
     ]
   },
@@ -256,11 +256,11 @@ URL Base:
     "data": [
       {
         "price": 30000,
-        "color": "silver"
+        "color": "Prata"
       },
       {
         "price": 30100,
-        "color": "gold"
+        "color": "Dourado"
       }
     ]
   }
