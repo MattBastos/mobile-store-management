@@ -9,7 +9,7 @@ import { axiosInstance } from "./axiosConfig";
 export const getProductById = async (token: string | null, productId: string) => {
   try {
     const response = await axiosInstance.get(
-      `products/${productId}`,
+      `/products/${productId}`,
       { headers: { Authorization: `Bearer ${token}` } },
     );
 
@@ -22,7 +22,7 @@ export const getProductById = async (token: string | null, productId: string) =>
 export const getProducts = async (token: string | null) => {
   try {
     const { data, status} = await axiosInstance.get(
-      'products',
+      '/products',
       { headers: { Authorization: `Bearer ${token}` } },
     );
 
@@ -50,7 +50,7 @@ export const createSimpleProduct = async (
 ) => {
   try {
     const { status } = await axiosInstance.post(
-      'simpleProduct',
+      '/simpleProduct',
       product,
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -79,7 +79,7 @@ export const createDetailedProduct = async (
 ) => {
   try {
     const { status } = await axiosInstance.post(
-      'detailedProduct',
+      '/detailedProduct',
       product,
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -108,7 +108,7 @@ export const createManyProducts = async (
 ) => {
   try {
     const { status } = await axiosInstance.post(
-      'manyProducts',
+      '/manyProducts',
       products,
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -137,7 +137,7 @@ export const updateProduct = async (
 ) => {
   try {
     const { status } = await axiosInstance.put(
-      `products/${id}`,
+      `/products/${id}`,
       product,
       { headers: { Authorization: `Bearer ${token}` } },
     );
@@ -166,7 +166,7 @@ export const deleteProduct = async (
 ) => {
   try {
     const { status } = await axiosInstance.delete(
-      `products/${productId}`,
+      `/products/${productId}`,
       { headers: { Authorization: `Bearer ${token}` } },
     );
 

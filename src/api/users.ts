@@ -3,7 +3,7 @@ import { User } from "@/types";
 
 export const login = async (formData: Omit<User, 'username'>) => {
   try {
-    const { data } = await axiosInstance.post('login', formData);
+    const { data } = await axiosInstance.post('/login', formData);
     return data;
   } catch (error) {
     console.error(`Erro ao efetuar login: ${error}`);
@@ -12,7 +12,7 @@ export const login = async (formData: Omit<User, 'username'>) => {
 
 export const createUser = async (userData: User) => {
   try {
-    const { data } = await axiosInstance.post('register', userData);
+    const { data } = await axiosInstance.post('/register', userData);
     return data;
   } catch (error) {
     console.error(`Erro ao criar novo usuário: ${error}`);
@@ -22,7 +22,7 @@ export const createUser = async (userData: User) => {
 export const validateUser = async (token: string | null) => {
   try {
     const { status } = await axiosInstance.get(
-      'validateUser',
+      '/validateUser',
       { headers: { Authorization: `Bearer ${token}` } },
     );
 
