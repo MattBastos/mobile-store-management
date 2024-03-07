@@ -4,5 +4,8 @@ export {
   SignOut,
   X,
   DeviceMobile,
-  ArrowFatLinesRight
+  ListDashes,
+  LinkedinLogo,
+  GithubLogo,
+  ArrowFatLinesRight,
 } from '@phosphor-icons/react';

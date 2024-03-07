@@ -14,7 +14,6 @@ export const ProductTable = () => {
     fetchData,
     isUserValid,
     message,
-    productData,
     isDeleteModalOpen,
     selectedProduct,
     closeDeleteModal,
