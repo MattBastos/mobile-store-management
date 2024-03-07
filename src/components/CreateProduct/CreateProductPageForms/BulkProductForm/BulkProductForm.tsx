@@ -129,6 +129,10 @@ export const BulkProductForm = ({
           <S.ProductsContainer>
             <S.Title>Lista de Produtos</S.Title>
 
+            {simpleProducts.length === 0 && (
+              <S.Message>A lista de produtos está vazia.</S.Message>
+            )}
+
             <S.Grid>
               {simpleProducts.length > 0 && (
                 simpleProducts.map((product, key) => (

@@ -17,6 +17,7 @@ export const LoginForm = () => {
           type="email"
           id="email"
           name="email"
+          placeholder="email@email.com"
           onChange={handleChange}
         />
       </S.InputSection>
@@ -30,6 +31,7 @@ export const LoginForm = () => {
           type="password"
           id="password"
           name="password"
+          placeholder='Mínimo de 6 caracteres.'
           onChange={handleChange}
         />
       </S.InputSection>

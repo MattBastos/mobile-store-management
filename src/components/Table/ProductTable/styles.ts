@@ -82,6 +82,7 @@ export const TBodyRow = tw.tr`
 `;
 
 export const TD = tw.td`
+  font-semibold
   px-2
   py-2
   md:px-4

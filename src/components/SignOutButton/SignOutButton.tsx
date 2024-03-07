@@ -10,24 +10,20 @@ export const SignOutButton = () => {
     openModal,
     isModalOpen,
     closeModal,
-    handleConfirm,
-    pathname
+    handleConfirm
   } = useSignOut();
 
   return (
     <>
-      {pathname !== '/login' &&
-        <S.SignOutButton
-          type="button"
-          title="Sair"
-          aria-label="Sair"
-          onClick={openModal}
-        >
-          <SignOut size={20} />
-
-          <S.SignOutTextButton>Sair</S.SignOutTextButton>
-        </S.SignOutButton>
-      }
+      <S.SignOutButton
+        type="button"
+        title="Sair"
+        aria-label="Sair"
+        onClick={openModal}
+      >
+        <SignOut size={20} />
+        <S.SignOutTextButton>Sair</S.SignOutTextButton>
+      </S.SignOutButton>
 
       {isModalOpen && <S.OverlayBackdrop onClick={closeModal} />}
 

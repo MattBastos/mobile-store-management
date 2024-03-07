@@ -34,6 +34,8 @@ export const Container = tw.section`
 `;
 
 export const TitleContainer = tw.section`
+  mb-1
+  md:mb-2
   flex
   w-full
   items-center
@@ -41,7 +43,7 @@ export const TitleContainer = tw.section`
 `;
 
 export const Title = tw.h1`
-  pl-2
+  ml-2
   text-md
   md:text-xl
   font-bold
@@ -50,7 +52,8 @@ export const Title = tw.h1`
 
 export const CloseModalButton = tw.button`
   rounded-full
-  p-2
+  mr-2
+  p-1
   md:p-3
   transition-colors
   duration-200
@@ -59,7 +62,8 @@ export const CloseModalButton = tw.button`
 `;
 
 export const SeparatorLine = tw.hr`
-  my-2
+  mb-1
+  md:mb-2
   h-1
   w-4/5
   border-t
@@ -67,7 +71,8 @@ export const SeparatorLine = tw.hr`
 `;
 
 export const Text = tw.p`
-  mb-6
+  mb-2
+  md:mb-4
   text-center
   text-base
   md:text-xl
@@ -77,7 +82,8 @@ export const ModalButtonsContainer = tw.section`
   flex
   justify-center
   items-center
-  gap-4
+  gap-3
+  md:gap-4
 `;
 
 export const ConfirmButton = tw.button`
@@ -87,8 +93,7 @@ export const ConfirmButton = tw.button`
   md:text-base
   text-center
   text-white
-  p-1
-  md:p-2
+  p-2
   rounded-md
   transition-colors
   duration-200
@@ -102,8 +107,7 @@ export const CancelButton = tw.button`
   md:text-base
   text-center
   text-white
-  p-1
-  md:p-2
+  p-2
   rounded-md
   transition-colors
   duration-200
