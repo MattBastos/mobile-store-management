@@ -18,7 +18,8 @@ export const Nav = tw.nav`
   flex
   justify-center
   items-center
-  gap-4
+  gap-1
+  md:gap-4
 `;
 
 export const Link = tw(NextLink)`
@@ -35,7 +36,9 @@ export const Link = tw(NextLink)`
 `;
 
 export const LinkTitle = tw.h3`
-  text-xl
+  text-sm
+  md:text-lg
+  lg:text-xl
   font-semibold
 `;
 

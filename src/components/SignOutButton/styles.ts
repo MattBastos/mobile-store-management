@@ -4,10 +4,13 @@ export const SignOutButton = tw.button`
   flex
   justify-center
   items-center
-  gap-2
+  gap-1
+  md:gap-2
   bg-primary
-  px-4
-  py-2
+  px-2
+  py-1
+  md:px-4
+  md:py-2
   rounded
   hover:bg-red-400
   transition-colors
@@ -55,7 +58,11 @@ export const ModalContainer = tw.section`
 
 export const ModalTitle = tw.h2`
   text-xl
-  mb-4
+  md:text-2xl
+  text-center
+  font-semibold
+  mb-2
+  md:mb-4
   mx-2
 `;
 
@@ -71,7 +78,8 @@ export const ConfirmButton = tw.button`
   hover:bg-red-600
   text-center
   text-white
-  p-2
+  p-1
+  md:p-2
   rounded-md
 `;
 
@@ -80,6 +88,7 @@ export const CancelButton = tw.button`
   hover:bg-gray-600
   text-center
   text-white
-  p-2
+  p-1
+  md:p-2
   rounded-md
 `;
