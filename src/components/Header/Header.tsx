@@ -1,10 +1,15 @@
+import { Logo } from '@/components/Logo';
 import { SignOutButton } from '@/components/SignOutButton';
+
 import * as S from './styles';
+
 
 export const Header = () => {
   return (
     <S.Container>
-      <h1 className='ml-4 text-white'>Logo</h1>
+      <section>
+        <Logo />
+      </section>
 
       <section className='mr-4'>
         <SignOutButton />

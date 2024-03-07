@@ -4,6 +4,8 @@ import {
   LinkedinLogo,
   GithubLogo
 } from '@/components/Icons';
+import { Logo } from '@/components/Logo';
+
 import * as S from './styles';
 
 const fullYear = new Date().getFullYear();
@@ -15,7 +17,7 @@ export const Footer = () => {
 
       <S.Content>
         <S.Section>
-          <h1 className="text-secondary">Logo</h1>
+          <Logo />
         </S.Section>
 
         <S.Section>
