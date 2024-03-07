@@ -1,3 +1,5 @@
+import NextImage from 'next/image';
+
 import tw from "tailwind-styled-components";
 
 export const Container = tw.section`
@@ -39,13 +41,17 @@ export const SeparatorLine = tw.hr`
   mx-auto
 `;
 
-export const DetailsContainer = tw.section`
-  flex
-  flex-col
-  gap-1
+export const ImageContainer = tw.section`
   m-auto
+  h-24
+  w-24
+  flex
+  items-center
+  justify-center
 `;
 
-export const TextDetails = tw.span`
-  font-semibold
+export const Image = tw(NextImage)`
+  h-full
+  w-full
+  object-cover
 `;

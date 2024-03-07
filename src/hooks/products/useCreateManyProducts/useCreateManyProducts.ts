@@ -15,10 +15,6 @@ export const useCreateManyProducts = () => {
     color: ""
   });
 
-  const manyProductsStructure = [
-    "Nome", "Marca", "Modelo", "Cores e Preços"
-  ];
-
   const openBulkForm = () => setIsBulkFormOpen(true);
   const closeBulkForm = () => setIsBulkFormOpen(false);
 
@@ -116,7 +112,6 @@ export const useCreateManyProducts = () => {
     addProduct,
     simpleProducts,
     onCreateManyProducts,
-    manyProductsStructure,
     openBulkForm
   };
 };
