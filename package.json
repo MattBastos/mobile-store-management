@@ -6,8 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "server": "nodemon ./src/server.js",
-    "lint": "next lint"
+    "server": "nodemon ./src/index.js",
+    "lint": "next lint",
+    "api-dev": "node ./src/index.js",
+    "api-build": "vercel dev",
+    "api-deploy": "vercel --prod"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
