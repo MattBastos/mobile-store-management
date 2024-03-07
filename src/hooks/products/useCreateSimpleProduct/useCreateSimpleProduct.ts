@@ -13,10 +13,6 @@ export const useCreateSimpleProduct = () => {
     color: ""
   });
 
-  const simpleStructure = [
-    "Nome", "Marca", "Modelo", "Preço", "Cor"
-  ];
-
   const openSimpleForm = () => setIsSimpleFormOpen(true);
   const closeSimpleForm = () => setIsSimpleFormOpen(false);
 
@@ -60,7 +56,6 @@ export const useCreateSimpleProduct = () => {
     closeSimpleForm,
     simpleFormHandleChange,
     onCreateSimpleProduct,
-    simpleStructure,
     openSimpleForm
   }
 };

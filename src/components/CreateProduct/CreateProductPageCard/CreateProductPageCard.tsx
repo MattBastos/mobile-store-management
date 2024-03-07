@@ -3,14 +3,14 @@ import * as S from './styles';
 type CreateProductPageCardProps = {
   title: string;
   description: string;
-  productStructure: string[];
+  image: string;
   onClick: () => void;
 }
 
 export const CreateProductPageCard = ({
   title,
   description,
-  productStructure,
+  image,
   onClick
 }: CreateProductPageCardProps) => {
   return (
@@ -21,11 +21,17 @@ export const CreateProductPageCard = ({
 
       <S.SeparatorLine />
 
-      <S.DetailsContainer>
-        {productStructure.map((structure) => (
-          <S.TextDetails key={structure}>{structure}</S.TextDetails>
-        ))}
-      </S.DetailsContainer>
+      <S.ImageContainer>
+        <S.Image
+          src={image}
+          alt="Produto"
+          title="Produto"
+          height={500}
+          width={500}
+          quality={100}
+          priority
+        />
+      </S.ImageContainer>
 
       <S.SeparatorLine />
     </S.Container>

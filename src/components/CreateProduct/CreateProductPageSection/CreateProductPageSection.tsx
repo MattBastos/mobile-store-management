@@ -28,7 +28,6 @@ export const CreateProductPageSection = () => {
     closeSimpleForm,
     simpleFormHandleChange,
     onCreateSimpleProduct,
-    simpleStructure,
     openSimpleForm
   } = useCreateSimpleProduct();
 
@@ -39,7 +38,6 @@ export const CreateProductPageSection = () => {
     closeDetailedForm,
     detailedFormHandleChange,
     onCreateDetailedProduct,
-    detailedStructure,
     openDetailedForm
   } = useCreateDetailedProduct();
 
@@ -54,7 +52,6 @@ export const CreateProductPageSection = () => {
     addProduct,
     simpleProducts,
     onCreateManyProducts,
-    manyProductsStructure,
     openBulkForm
   } = useCreateManyProducts();
 
@@ -116,21 +113,21 @@ export const CreateProductPageSection = () => {
           <CreateProductPageCard
             title="Produto Simples"
             description="Crie um produto de forma rápida e fácil."
-            productStructure={simpleStructure}
+            image="/assets/images/simpleProduct.png"
             onClick={openSimpleForm}
           />
 
           <CreateProductPageCard
             title="Produto Detalhado"
             description="Crie um produto com informações detalhadas."
-            productStructure={detailedStructure}
+            image="/assets/images/detailedProduct.png"
             onClick={openDetailedForm}
           />
 
           <CreateProductPageCard
             title="Criar Produtos"
             description="Crie vários produtos de uma vez."
-            productStructure={manyProductsStructure}
+            image="/assets/images/manyProducts.png"
             onClick={openBulkForm}
           />
         </>

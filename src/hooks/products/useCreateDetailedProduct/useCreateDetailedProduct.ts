@@ -15,10 +15,6 @@ export const useCreateDetailedProduct = () => {
     price: 0,
   });
 
-  const detailedStructure = [
-    "Nome", "Detalhes: Marca, Modelo, Cor...", "Preço"
-  ];
-
   const openDetailedForm = () => setIsDetailedFormOpen(true);
   const closeDetailedForm = () => setIsDetailedFormOpen(false);
 
@@ -73,7 +69,6 @@ export const useCreateDetailedProduct = () => {
     closeDetailedForm,
     detailedFormHandleChange,
     onCreateDetailedProduct,
-    detailedStructure,
     openDetailedForm
   };
 };
