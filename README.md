@@ -214,7 +214,7 @@ URL Base:
   "details": {
     "brand": "Xiaomi",
     "model": "Redmi 9",
-    "color": Preto
+    "color": "Preto"
   },
   "price": 10000,
 }
@@ -302,3 +302,4 @@ URL Base:
 ## Author
 
 - [@MattBastos](https://www.github.com/MattBastos)
+- [Linkedin](https://www.linkedin.com/matthewsbastos)
