@@ -19,7 +19,7 @@ import { InvalidUserMessage } from "@/components/InvalidUserMessage";
 import * as S from './styles';
 
 export const CreateProductPageSection = () => {
-  const [isUserValid, setIsUserValid] = useState(false);
+  const [isUserValid, setIsUserValid] = useState(true);
 
   const {
     simpleFormMessage,

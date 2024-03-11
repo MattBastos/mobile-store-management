@@ -3,7 +3,7 @@ import NextImage from 'next/image';
 import tw from "tailwind-styled-components";
 
 export const Container = tw.section`
-  bg-white
+  hover:bg-white
   cursor-pointer
   text-center
   w-64
@@ -16,6 +16,7 @@ export const Container = tw.section`
   duration-300
   flex
   flex-col
+  bg-gray-200
 `;
 
 export const Title = tw.h2`

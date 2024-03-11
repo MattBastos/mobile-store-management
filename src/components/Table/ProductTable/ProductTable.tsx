@@ -6,6 +6,7 @@ import { useProductTable } from "@/hooks";
 import { InvalidUserMessage } from "@/components/InvalidUserMessage";
 import { DeleteModal } from "@/components/Table";
 import { NavigateToNewProductButton } from "@/components/Table";
+import { Loading } from "@/components/Loading";
 
 import * as S from './styles';
 
@@ -13,6 +14,7 @@ export const ProductTable = () => {
   const {
     fetchData,
     isUserValid,
+    isLoading,
     message,
     isDeleteModalOpen,
     selectedProduct,
@@ -32,6 +34,8 @@ export const ProductTable = () => {
 
   return (
     <S.Container>
+      {isLoading && <Loading />}
+
       <InvalidUserMessage isUserValid={isUserValid}/>
 
       {message && <S.Message>{message}</S.Message>}

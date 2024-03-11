@@ -7,6 +7,7 @@ export const useProductTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [message, setMessage] = useState("");
   const [isUserValid, setIsUserValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [productData, setProductData] = useState<Product[]>([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<DeletableProductInfo>({
@@ -70,12 +71,14 @@ export const useProductTable = () => {
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const token = localStorage.getItem('token');
       const response = await getProducts(token);
 
       if (response?.statusCode === 200 && response.message) {
         setIsUserValid(true);
         setProductData(response.message);
+        setIsLoading(false);
       } else {
         setIsUserValid(false);
       }
@@ -87,6 +90,7 @@ export const useProductTable = () => {
   return {
     fetchData,
     isUserValid,
+    isLoading,
     message,
     isDeleteModalOpen,
     selectedProduct,

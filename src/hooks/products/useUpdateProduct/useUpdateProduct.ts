@@ -5,7 +5,8 @@ import { getProductById, updateProduct } from "@/api";
 import { UpdatableProductInfo } from "@/types";
 
 export const useUpdateProduct = (productId: string) => {
-  const [isUserValid, setIsUserValid] = useState(false);
+  const [isUserValid, setIsUserValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<UpdatableProductInfo>({
     id: 0,
@@ -43,6 +44,7 @@ export const useUpdateProduct = (productId: string) => {
 
   const getProduct = async () => {
     try {
+      setIsLoading(true);
       const token = localStorage.getItem('token');
       const response = await getProductById(token, productId);
   
@@ -50,6 +52,7 @@ export const useUpdateProduct = (productId: string) => {
         setIsUserValid(true);
         setSelectedProduct(response.data);
         setFormData(response.data);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Erro ao buscar produto:", error);
@@ -79,6 +82,7 @@ export const useUpdateProduct = (productId: string) => {
 
   return {
     isUserValid,
+    isLoading,
     selectedProduct,
     onUpdate,
     formData,

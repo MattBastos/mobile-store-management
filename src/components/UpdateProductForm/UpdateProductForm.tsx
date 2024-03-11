@@ -2,6 +2,7 @@
 
 import { useUpdateProduct } from '@/hooks';
 import { InvalidUserMessage } from '@/components/InvalidUserMessage';
+import { Loading } from '@/components/Loading';
 
 import * as S from './styles';
 
@@ -12,6 +13,7 @@ type UpdateProductFormProps = {
 export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
   const {
     isUserValid,
+    isLoading,
     selectedProduct,
     onUpdate,
     formData,
@@ -23,6 +25,8 @@ export const UpdateProductForm = ({ productId }: UpdateProductFormProps) => {
 
   return (
     <>
+      {isLoading && <Loading />}
+
       <InvalidUserMessage isUserValid={isUserValid}/>
 
       {isUserValid && (
